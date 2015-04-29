@@ -1,6 +1,18 @@
 angular.module('mathApp', [])
 .controller('math', ['$scope', function($scope) {
    $scope.problem = "No Problem Yet!"
+      $scope.showAdd = function(){
+        this.addReveal = true;
+    }
+    $scope.hideAdd = function(){
+        this.addReveal = false;
+    }
+     $scope.showSub = function(){
+        this.subReveal = true;
+    }
+    $scope.hideSub = function(){
+        this.subReveal = false;
+    }
     $scope.showMul = function(){
         this.mulReveal = true;
     }
@@ -14,7 +26,7 @@ angular.module('mathApp', [])
         this.divReveal = false;
     }
     $scope.getProblem = function(){
-       $scope.problem = math(1,1);
+       $scope.problem = math(3,0); // assume types are set up
     }
     function math(type, subType){
         if(type === 0){
@@ -32,7 +44,7 @@ angular.module('mathApp', [])
      }
      function customNum(max, min, end){ // max supposed to be 1 for 1, 10 for 10, by tens, min can be any number
          if(end === 5){
-             var endsInFive = [15,25,35,45,55,65,75,85,95,105,115,125,135,145,155,165,175,185,1950];
+             var endsInFive = [15,25,35,45,55,65,75,85,95,105,115,125,135,145,155,165,175,185,195];
              return endsInFive[Math.floor((Math.random() * endsInFive.length))];
          }else{
              return Math.floor((Math.random() * max) + min);
@@ -68,7 +80,7 @@ angular.module('mathApp', [])
          var num = customNum(1000, 200);
          var otherNum = customNum(30, 3);
          if(type === 0){
-            return num + '/' + otherNum + 'remander';
+            return num + '/' + otherNum + ' remander';
          }else{
           return num + '/' + otherNum;   
          }

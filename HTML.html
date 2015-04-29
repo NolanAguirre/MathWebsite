@@ -16,15 +16,28 @@
             </div>
             <div class="row">
                 <div class="selection col-md-1 rmp" >
-                    <div ng-mouseover="showAdd()" class="add col-md-12">Addition</div>
-                    <div ng-mouseover="showSub()" class="sub col-md-12">Subtraction</div> 
+                    <div ng-mouseover='showAdd()' ng-mouseleave="hideAdd()">
+                        <div class="add col-md-12">Addition</div>
+                        <div ng-show="addReveal" class="addtype col-md-12">fractions</div>
+                    </div>
+                   <div ng-mouseover='showSub()' ng-mouseleave="hideSub()">
+                        <div class="sub col-md-12">Addition</div>
+                        <div ng-show="subReveal" class="subtype col-md-12">fractions</div>
+                    </div>
                     <div ng-mouseover='showMul()' ng-mouseleave="hideMul()">
                         <div class="mul col-md-12">Multiplication</div>
-                        <div ng-show="mulReveal" class="mulType col-md-12">two digit numbers</div>
+                        <div ng-show="mulReveal">
+                            <div class="mulType col-md-12">Numbers that end in 5</div>
+                            <div class="mulType col-md-12">Numbers multiplied by 11</div>
+                            <div class="mulType col-md-12">three digit numbers</div>
+                            <div class="mulType col-md-12">squares</div>
+                            <div class="mulType col-md-12">cubes</div>
+                            <div class="mulType col-md-12">fractions</div>
+                        </div>
                     </div>
                     <div ng-mouseover='showDiv()' ng-mouseleave="hideDiv()">
-                        <div class="div col-md-12">division</div>
-                        <div ng-show="divReveal" class="divType col-md-12">By 11</div>                        
+                        <div class="div col-md-12">Division</div>
+                        <div ng-show="divReveal" class="divType col-md-12">Remainder </div>                        
                     </div>
                 </div>
                 <div class=" mainbody col-md-11 rmp">
@@ -42,10 +55,11 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <input type="text" value="userAnwser"/>
+                            <input type="text" />
                         </div>
                         <div class="col-md-4">
                             <button ng-click="checkForInput()">Submit Answer</button>
+                            <button ng-click="getProblem()">New Problem</button>
                         </div>
                     </div>
                 </div>

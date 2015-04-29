@@ -44,7 +44,7 @@ padding:0px;
 }
 .mainbody{
 height:90%;
-background-color:yellow;
+background-color:white;
 }
 .help{
 background-color:#01DFD7;
@@ -52,7 +52,7 @@ height:100%;
 float:right;
 }
 .numberDisplay{
-background-color:#8A0829;
+background-color:white;
 height:85%;
 padding-top:10%;
 }
@@ -65,7 +65,12 @@ height:15%;
 float:right
 }
 .problem{
-font-size:200px;
+font-size:120px;
 text-align:center;
 }
-
+.addType{
+height:10%;
+}
+.subType{
+height:10%;
+}
