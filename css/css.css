@@ -1,41 +1,41 @@
 .header{
 height: 10%;
-background-color:#BDBDBD;
+/*background-color:#BDBDBD;*/
 }
 .intro{
 text-align: center;
 }
 .selection{
 height:90%;
-background-color:gray;
+/*background-color:gray;*/
 }
 .add{
 height:10%;
-background-color:blue;
+/*background-color:blue; */
 text-align:center;
 }
 .sub{
 height:10%;
-background-color:green;
+/*background-color:green; */
 text-align:center;
 }
 .mul{
 height:10%;
-background-color:blue;
+/*background-color:blue; */
 text-align:center;
 }
 .div{
 height:10%;
-background-color:green;
+/*background-color:green; */
 text-align:center;
 }
 .divType{
-background-color:purple;
+/*background-color:purple; */
 height:10%;
 text-align:center;
 }
 .mulType{
-background-color:orange;
+/*background-color:orange; */
 height:10%;
 text-align:center;
 }
@@ -44,7 +44,7 @@ padding:0px;
 }
 .mainbody{
 height:90%;
-background-color:yellow;
+/*background-color:yellow; */
 }
 .help{
 background-color:#01DFD7;
@@ -52,12 +52,12 @@ height:100%;
 float:right;
 }
 .numberDisplay{
-background-color:#8A0829;
+/*background-color:#8A0829; */
 height:85%;
 padding-top:10%;
 }
 .utilities{
-background-color:#0101DF;
+background-color:#0101DF; */
 height:15%;
 
 }

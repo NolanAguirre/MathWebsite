@@ -14,13 +14,14 @@
                     <h1 class="intro">Welcome to the sphs numbersense practice website</h1>
                 </div>
             </div>
-            <div class="row">
+            <div class="row"> 
+			<!--TO DO add ng-onclick to change type-->
                 <div class="selection col-md-1 rmp" >
                     <div ng-mouseover="showAdd()" class="add col-md-12">Addition</div>
                     <div ng-mouseover="showSub()" class="sub col-md-12">Subtraction</div> 
                     <div ng-mouseover='showMul()' ng-mouseleave="hideMul()">
                         <div class="mul col-md-12">Multiplication</div>
-                        <div ng-show="mulReveal" class="mulType col-md-12">two digit numbers</div>
+						<div ng-show="mulReveal" class="mulType col-md-12">two digit numbers</div>
                     </div>
                     <div ng-mouseover='showDiv()' ng-mouseleave="hideDiv()">
                         <div class="div col-md-12">division</div>
