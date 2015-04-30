@@ -1,26 +1,29 @@
 angular.module('mathApp', [])
-.controller('math', ['$scope', function($scope) {
-/* TO DO
-        Add fractions function
-        Add decimal function
-        Change div, mul, add, and sub problem functions to  use decimal and fractions
-        Change number range
-        Add solver function
-        Add checkAnswer function
-        Add helpNeeded function
-        Add custom problem function
-*/
-        
-  $scope.problem = "No Problem Yet!";
-      var showStatus = function(){
-       this.status = true;
+    .controller('math', MathController);
+MathController.$inject = ['$scope'];
+
+function MathController($scope) {
+    /* TO DO
+            Add fractions function
+            Add decimal function
+            Change div, mul, add, and sub problem functions to  use decimal and fractions
+            Change number range
+            Add solver function
+            Add checkAnswer function
+            Add helpNeeded function
+            Add custom problem function
+    */
+    $scope.problem = "No Problem Yet!";
+    var showStatus = function() {
+        this.status = true;
     }
-    var hideStatus = function(){
+
+    var hideStatus = function() {
         this.status = false;
     }
+
     var mathTypeObj = {
-    
-       mul: {
+        mul: {
             mainType: "Multiplication",
             mainTypeNum: 2,
             types: ['By 11', 'Ends in five', 'Fractions'],
@@ -56,76 +59,84 @@ angular.module('mathApp', [])
             mainType: "Custom"
         }
     }
-    $scope.mathType = [mathTypeObj.add, mathTypeObj.sub, mathTypeObj.mul, mathTypeObj.div, mathTypeObj.cus];
- 
-   
-    $scope.getProblem = function(){
-       $scope.problem = math($scope.terms, $scope.subType); // assume types are set up
+    $scope.mathType = [mathTypeObj.add, mathTypeObj.sub,
+        mathTypeObj.mul, mathTypeObj.div, mathTypeObj.cus
+    ];
+    $scope.getProblem = function() {
+        $scope.problem = math($scope.terms, $scope.subType); // assume types are set up
     }
-    $scope.problemType = function(type, subType){
+    $scope.problemType = function(type, subType) {
         $scope.problem = math(type, subType);
     }
-    function math(type, subType){
-        if(type === 0){
+
+    function math(type, subType) {
+        if (type === 0) {
             return addProblem();
-        }else if (type === 1){
+        } else if (type === 1) {
             return subProblem();
-        }else if(type === 2){
+        } else if (type === 2) {
             return mulProblem(subType);
-        }else{
-        return divProblem(subType);
-        }    
-     }
-     function randomNum(){
-         return Math.floor((Math.random() * 10000) + 1000); 
-     }
-     function customNum(max, min, end){ // max supposed to be 1 for 1, 10 for 10, by tens, min can be any number
-         if(end === 5){
-         var endsInFive = [];
-				for(var foo = 5; foo < 500; foo += 5){
-                    if(foo % 10 === 0){
-                        foo += 5;
-                    }
-				endsInFive.push(foo);
-				}
-             return endsInFive[Math.floor((Math.random() * endsInFive.length))];
-         }else{
-             return Math.floor((Math.random() * max) + min);
-         }
-     }
-     function addProblem(){
-         var num = randomNum();
-         var otherNum = randomNum();
-         return num + '+' + otherNum;
-     }
-     function subProblem(){
-         var num = randomNum();
-         var otherNum = randomNum();
-         return num + '-' + otherNum;
-     }
-     function mulProblem(type){
-         var num;
-         var otherNum;
-         if(type === 0){ // this is for multiply by 11
-             num = customNum(10000, 10);
-             return num + 'x' + 11;
-         }else if(type === 1){ // meant for ends in 5
-             num = customNum(1000, 10, 5);
-             otherNum = customNum(1000, 10, 5);
-             return num + 'x' + otherNum;
-         }else{ // fractions
-             num = customNum(1000, 10);
-             otherNum = customNum(1000, 10);
-                return num + 'x' + otherNum;
-         }
-     }
-     function divProblem(type){
-         var num = customNum(1000, 200);
-         var otherNum = customNum(30, 3);
-         if(type === 0){
+        } else {
+            return divProblem(subType);
+        }
+    }
+
+    function randomNum() {
+        return Math.floor((Math.random() * 10000) + 1000);
+    }
+
+    function customNum(max, min, end) { // max supposed to be 1 for 1, 10 for 10, by tens, min can be any number
+        if (end === 5) {
+            var endsInFive = [];
+            for (var foo = 5; foo < 500; foo += 5) {
+                if (foo % 10 === 0) {
+                    foo += 5;
+                }
+                endsInFive.push(foo);
+            }
+            return endsInFive[Math.floor((Math.random() *
+                endsInFive.length))];
+        } else {
+            return Math.floor((Math.random() * max) + min);
+        }
+    }
+
+    function addProblem() {
+        var num = randomNum();
+        var otherNum = randomNum();
+        return num + '+' + otherNum;
+    }
+
+    function subProblem() {
+        var num = randomNum();
+        var otherNum = randomNum();
+        return num + '-' + otherNum;
+    }
+
+    function mulProblem(type) {
+        var num;
+        var otherNum;
+        if (type === 0) { // this is for multiply by 11
+            num = customNum(10000, 10);
+            return num + 'x' + 11;
+        } else if (type === 1) { // meant for ends in 5
+            num = customNum(1000, 10, 5);
+            otherNum = customNum(1000, 10, 5);
+            return num + 'x' + otherNum;
+        } else { // fractions
+            num = customNum(1000, 10);
+            otherNum = customNum(1000, 10);
+            return num + 'x' + otherNum;
+        }
+    }
+
+    function divProblem(type) {
+        var num = customNum(1000, 200);
+        var otherNum = customNum(30, 3);
+        if (type === 0) {
             return num + '/' + otherNum + ' remander';
-         }else{
-          return num + '/' + otherNum;   
-         }
-     }
-    }]);
+        } else {
+            return num + '/' + otherNum;
+        }
+    }
+}
