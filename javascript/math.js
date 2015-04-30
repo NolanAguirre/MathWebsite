@@ -140,7 +140,7 @@ function MathController($scope) {
         var otherNum = customNum(30, 3);
 
         if (type === 0) {
-            return num + '/' + otherNum + ' remander';
+            return num + '/' + otherNum + ' remainder';
         } else {
             return num + '/' + otherNum;
         }
