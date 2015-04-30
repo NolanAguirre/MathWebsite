@@ -1,0 +1,58 @@
+<!doctype hmtl>
+<html lang="en" ng-app="mathApp">
+    <head>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/css.css">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title> Math problems</title>
+    </head>
+    <body ng-controller="math">
+        <div class="fluid-container">
+            <div class="row">
+                <div class="col-md-12 header">
+                    <h1 class="intro">Welcome to the sphs numbersense practice website</h1>
+                </div>
+            </div>
+            <div class="row"> 
+			<!-- add ng-onclick to change type, fix the thing below-->
+                <div class="selection col-md-1 rmp" >
+                    <div ng-repeat="terms in mathType">
+                        <div ng-mouseover='terms.show()' ng-mouseleave="terms.hide()">
+                            <div class="mul col-md-12">{{terms.mainType}}</div>
+                            <div ng-show="terms.status">
+                                <div ng-repeat="subType in terms.types "  class="mulType col-md-12"> {{subType}}</div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+                <div class=" mainbody col-md-11 rmp">
+                   <div class="col-md-10 numberDisplay">
+                        <h1 class="problem">{{problem}}</h1>
+                   </div>
+                   <div class="col-md-2 help">
+                        <div><h2>Need Help?</h2></div>
+                   </div>
+                   <div class="col-md-10 utilities ">
+                       <div class="answerDisplay col-md-4">
+                            <div ng-show="answerSubmitStatus">
+                                {{result}}
+                                <p ng-show="answerDisplay">{{answer}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" />
+                        </div>
+                        <div class="col-md-4">
+                            <button ng-click="checkForInput()">Submit Answer</button>
+                            <button ng-click="getProblem()">New Problem</button>
+                        </div>
+                    </div>
+                </div>
+            </div>   
+        </div>
+          <script src="javascript/angular.min.js"></script>
+          <script src="javascript/math.js"></script>
+          <script src="javascript/jquery-2.1.3.min.js"></script>
+    </body>
+</html>
