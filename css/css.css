@@ -51,6 +51,6 @@ text-align:center;
     display: none;
 }
 
-.mainType:hover + .subtypes {
+.mainType:hover + .subtypes, .subtypes:hover {
     display: block;
 }
