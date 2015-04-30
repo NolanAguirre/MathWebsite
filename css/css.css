@@ -1,3 +1,4 @@
+/* make this pretty, add animation */
 .header{
 height: 10%;
 /*background-color:#BDBDBD;*/
@@ -7,37 +8,15 @@ text-align: center;
 }
 .selection{
 height:90%;
-/*background-color:gray;*/
+background-color:gray;
 }
-.add{
-height:10%;
-/*background-color:blue; */
-text-align:center;
-}
-.sub{
-height:10%;
-/*background-color:green; */
-text-align:center;
-}
-.mul{
-height:10%;
-/*background-color:blue; */
-text-align:center;
-}
-.div{
-height:10%;
-/*background-color:green; */
-text-align:center;
-}
-.divType{
-/*background-color:purple; */
-height:10%;
-text-align:center;
-}
-.mulType{
+.subType{
 /*background-color:orange; */
 height:10%;
 text-align:center;
+}
+.mainType{
+height:5%;
 }
 .rmp{
 padding:0px;
@@ -57,9 +36,8 @@ height:85%;
 padding-top:10%;
 }
 .utilities{
-background-color:#0101DF; */
-height:15%;
 
+height:15%;
 }
 .anwserDisplay{
 float:right
@@ -67,10 +45,4 @@ float:right
 .problem{
 font-size:120px;
 text-align:center;
-}
-.addType{
-height:10%;
-}
-.subType{
-height:10%;
 }

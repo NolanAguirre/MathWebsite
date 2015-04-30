@@ -1,6 +1,17 @@
 angular.module('mathApp', [])
 .controller('math', ['$scope', function($scope) {
-    $scope.problem = "No Problem Yet!";
+/* TO DO
+        Add fractions function
+        Add decimal function
+        Change div, mul, add, and sub problem functions to  use decimal and fractions
+        Change number range
+        Add solver function
+        Add checkAnswer function
+        Add helpNeeded function
+        Add custom problem function
+*/
+        
+  $scope.problem = "No Problem Yet!";
       var showStatus = function(){
        this.status = true;
     }
@@ -8,40 +19,51 @@ angular.module('mathApp', [])
         this.status = false;
     }
     var mathTypeObj = {
-    mul : {
-        mainType: "Multiplication",
-        types: ['ends in five'],
-        show: showStatus,
-        hide: hideStatus,
-        status: false
-    },
-     sub : {
-        mainType: "Subtraction",
-        types: ['Fractions'],
-        show: showStatus,
-        hide: hideStatus,
-        showStatus: false
-    },
-     div : {
-        mainType: "Division",
-        types: ['nine'],
-        show: showStatus,
-        hide: hideStatus,
-        showStatus: false
-    },
-     add : {
-        mainType: "Addition",
-        types: ['three digit number'],
-        show: showStatus,
-        hide: hideStatus,
-        showStatus: false
+    
+       mul: {
+            mainType: "Multiplication",
+            mainTypeNum: 2,
+            types: ['By 11', 'Ends in five', 'Fractions'],
+            show: showStatus,
+            hide: hideStatus,
+            status: false
+        },
+        sub: {
+            mainType: "Subtraction",
+            mainTypeNum: 1,
+            types: ['Decimals', 'Fractions'],
+            show: showStatus,
+            hide: hideStatus,
+            showStatus: false
+        },
+        div: {
+            mainType: "Division",
+            mainTypeNum: 3,
+            types: ['remander'],
+            show: showStatus,
+            hide: hideStatus,
+            showStatus: false
+        },
+        add: {
+            mainType: "Addition",
+            mainTypeNum: 0,
+            types: ['Decimals', 'Fractions'],
+            show: showStatus,
+            hide: hideStatus,
+            showStatus: false
+        },
+        cus: { // custom problem type
+            mainType: "Custom"
         }
     }
-    $scope.mathType = [mathTypeObj.mul, mathTypeObj.sub, mathTypeObj.div, mathTypeObj.add];
+    $scope.mathType = [mathTypeObj.add, mathTypeObj.sub, mathTypeObj.mul, mathTypeObj.div, mathTypeObj.cus];
  
    
     $scope.getProblem = function(){
-       $scope.problem = math(3,0); // assume types are set up
+       $scope.problem = math($scope.terms, $scope.subType); // assume types are set up
+    }
+    $scope.problemType = function(type, subType){
+        $scope.problem = math(type, subType);
     }
     function math(type, subType){
         if(type === 0){
@@ -61,6 +83,9 @@ angular.module('mathApp', [])
          if(end === 5){
          var endsInFive = [];
 				for(var foo = 5; foo < 500; foo += 5){
+                    if(foo % 10 === 0){
+                        foo += 5;
+                    }
 				endsInFive.push(foo);
 				}
              return endsInFive[Math.floor((Math.random() * endsInFive.length))];
@@ -88,7 +113,7 @@ angular.module('mathApp', [])
              num = customNum(1000, 10, 5);
              otherNum = customNum(1000, 10, 5);
              return num + 'x' + otherNum;
-         }else{ // three digit multiplication 
+         }else{ // fractions
              num = customNum(1000, 10);
              otherNum = customNum(1000, 10);
                 return num + 'x' + otherNum;

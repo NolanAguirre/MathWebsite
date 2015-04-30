@@ -15,17 +15,17 @@
                 </div>
             </div>
             <div class="row"> 
-			<!-- add ng-onclick to change type, fix the thing below-->
                 <div class="selection col-md-1 rmp" >
                     <div ng-repeat="terms in mathType">
                         <div ng-mouseover='terms.show()' ng-mouseleave="terms.hide()">
-                            <div class="mul col-md-12">{{terms.mainType}}</div>
+                            <div class="mainType col-md-12">{{terms.mainType}}</div>
                             <div ng-show="terms.status">
-                                <div ng-repeat="subType in terms.types "  class="mulType col-md-12"> {{subType}}</div>
+                                <div ng-repeat="subType in terms.types" ng-click="problemType(terms.mainTypeNum, terms.types.indexOf(subType))" class="subType col-md-12">{{subType}}</div>
                             </div>
                         </div>
                 </div>
             </div>
+                <!-- To Do, add custom selection area, make help box, include shortcuts-->
                 <div class=" mainbody col-md-11 rmp">
                    <div class="col-md-10 numberDisplay">
                         <h1 class="problem">{{problem}}</h1>
