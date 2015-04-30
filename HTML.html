@@ -15,32 +15,17 @@
                 </div>
             </div>
             <div class="row"> 
-			<!--TO DO add ng-onclick to change type-->
+			<!-- add ng-onclick to change type, fix the thing below-->
                 <div class="selection col-md-1 rmp" >
-                    <div ng-mouseover='showAdd()' ng-mouseleave="hideAdd()">
-                        <div class="add col-md-12">Addition</div>
-                        <div ng-show="addReveal" class="addtype col-md-12">fractions</div>
-                    </div>
-                   <div ng-mouseover='showSub()' ng-mouseleave="hideSub()">
-                        <div class="sub col-md-12">Addition</div>
-                        <div ng-show="subReveal" class="subtype col-md-12">fractions</div>
-                    </div>
-                    <div ng-mouseover='showMul()' ng-mouseleave="hideMul()">
-                        <div class="mul col-md-12">Multiplication</div>
-                        <div ng-show="mulReveal">
-                            <div class="mulType col-md-12">Numbers that end in 5</div>
-                            <div class="mulType col-md-12">Numbers multiplied by 11</div>
-                            <div class="mulType col-md-12">three digit numbers</div>
-                            <div class="mulType col-md-12">squares</div>
-                            <div class="mulType col-md-12">cubes</div>
-                            <div class="mulType col-md-12">fractions</div>
+                    <div ng-repeat="terms in mathType track by $index">
+                        <div ng-mouseover='mathType[$index].show()' ng-mouseleave="mathType[$index].hide()">
+                            <div class="mul col-md-12">{{mathType[$index].mainType}}</div>
+                            <div ng-show="mathType[$index].status">
+                                <div ng-repeat="subType in mathType[$index].types track by subType.id "  class="mulType col-md-12"> {{mathType[$index].types[subType.id]}}</div>
+                            </div>
                         </div>
-                    </div>
-                    <div ng-mouseover='showDiv()' ng-mouseleave="hideDiv()">
-                        <div class="div col-md-12">Division</div>
-                        <div ng-show="divReveal" class="divType col-md-12">Remainder </div>                        
-                    </div>
                 </div>
+            </div>
                 <div class=" mainbody col-md-11 rmp">
                    <div class="col-md-10 numberDisplay">
                         <h1 class="problem">{{problem}}</h1>

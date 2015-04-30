@@ -1,34 +1,45 @@
 angular.module('mathApp', [])
 .controller('math', ['$scope', function($scope) {
-<<<<<<< HEAD
-   $scope.problem = "No Problem Yet!"
-      $scope.showAdd = function(){
-        this.addReveal = true;
+    $scope.problem = "No Problem Yet!";
+      var showStatus = function(){
+       this.status = true;
     }
-    $scope.hideAdd = function(){
-        this.addReveal = false;
+    var hideStatus = function(){
+        this.status = false;
     }
-     $scope.showSub = function(){
-        this.subReveal = true;
+    var mathTypeObj = {
+    mul : {
+        mainType: "Multiplication",
+        types: ['ends in five'],
+        show: showStatus,
+        hide: hideStatus,
+        status: false
+    },
+     sub : {
+        mainType: "Subtraction",
+        types: ['Fractions'],
+        show: showStatus,
+        hide: hideStatus,
+        showStatus: false
+    },
+     div : {
+        mainType: "Division",
+        types: ['nine'],
+        show: showStatus,
+        hide: hideStatus,
+        showStatus: false
+    },
+     add : {
+        mainType: "Addition",
+        types: ['three digit number'],
+        show: showStatus,
+        hide: hideStatus,
+        showStatus: false
+        }
     }
-    $scope.hideSub = function(){
-        this.subReveal = false;
-    }
-=======
-    $scope.problem = "No Problem Yet!"
->>>>>>> 90e2cede204ac5224d13984fd9bb61f35e68a1ae
-    $scope.showMul = function(){
-        this.mulReveal = true;
-    }
-    $scope.hideMul = function(){
-        this.mulReveal = false;
-    }
-    $scope.showDiv = function(){
-        this.divReveal = true;
-    }
-    $scope.hideDiv = function(){
-        this.divReveal = false;
-    }
+    $scope.mathType = [mathTypeObj.mul, mathTypeObj.sub, mathTypeObj.div, mathTypeObj.add];
+ 
+   
     $scope.getProblem = function(){
        $scope.problem = math(3,0); // assume types are set up
     }
@@ -48,7 +59,7 @@ angular.module('mathApp', [])
      }
      function customNum(max, min, end){ // max supposed to be 1 for 1, 10 for 10, by tens, min can be any number
          if(end === 5){
-         var endsInFive[];
+         var endsInFive = [];
 				for(var foo = 5; foo < 500; foo += 5){
 				endsInFive.push(foo);
 				}
