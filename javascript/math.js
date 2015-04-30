@@ -20,37 +20,25 @@ function MathController($scope) {
         mul: {
             mainType: "Multiplication",
             mainTypeNum: 2,
-            types: ['By 11', 'Ends in five', 'Fractions'],
-            show: showStatus,
-            hide: hideStatus,
-            status: false
+            types: ['By 11', 'Ends in five', 'Fractions']
         },
 
         sub: {
             mainType: "Subtraction",
             mainTypeNum: 1,
-            types: ['Decimals', 'Fractions'],
-            show: showStatus,
-            hide: hideStatus,
-            showStatus: false
+            types: ['Decimals', 'Fractions']
         },
 
         div: {
             mainType: "Division",
             mainTypeNum: 3,
-            types: ['remander'],
-            show: showStatus,
-            hide: hideStatus,
-            showStatus: false
+            types: ['remander']
         },
 
         add: {
             mainType: "Addition",
             mainTypeNum: 0,
-            types: ['Decimals', 'Fractions'],
-            show: showStatus,
-            hide: hideStatus,
-            showStatus: false
+            types: ['Decimals', 'Fractions']
         },
 
         cus: { // custom problem type
@@ -144,13 +132,5 @@ function MathController($scope) {
         } else {
             return num + '/' + otherNum;
         }
-    }
-
-    function showStatus() {
-        this.status = true;
-    }
-
-    function hideStatus() {
-        this.status = false;
     }
 }

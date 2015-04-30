@@ -20,15 +20,14 @@
         <div class="row">
             <div class="selection col-md-1 rmp">
                 <div ng-repeat="terms in mathType">
-                    <div ng-mouseover="terms.show()" ng-mouseleave="terms.hide()">
-                        <div class="mainType col-md-12">{{terms.mainType}}</div>
-                        <div ng-show="terms.status">
-                            <div
-                        		ng-repeat="subType in terms.types"
-                                ng-click="problemType(terms.mainTypeNum, terms.types.indexOf(subType))"
-                            	class="subType col-md-12">
-                            	{{subType}}
-                            </div>
+                    <div class="mainType col-md-12">{{terms.mainType}}</div>
+
+                    <div class="subtypes">
+                        <div
+                            ng-repeat="subType in terms.types"
+                            ng-click="problemType(terms.mainTypeNum, terms.types.indexOf(subType))"
+                            class="subType col-md-12">
+                            {{subType}}
                         </div>
                     </div>
                 </div>

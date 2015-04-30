@@ -46,3 +46,11 @@ float:right
 font-size:120px;
 text-align:center;
 }
+
+.subtypes {
+    display: none;
+}
+
+.mainType:hover + .subtypes {
+    display: block;
+}
