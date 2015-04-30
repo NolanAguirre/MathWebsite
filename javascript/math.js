@@ -1,26 +1,20 @@
 angular.module('mathApp', [])
     .controller('math', MathController);
+
 MathController.$inject = ['$scope'];
-
 function MathController($scope) {
-    /* TO DO
-            Add fractions function
-            Add decimal function
-            Change div, mul, add, and sub problem functions to  use decimal and fractions
-            Change number range
-            Add solver function
-            Add checkAnswer function
-            Add helpNeeded function
-            Add custom problem function
+    /* TODO:
+     * Add fractions function
+     * Add decimal function
+     * Change div, mul, add, and sub problem functions to  use decimal and fractions
+     * Change number range
+     * Add solver function
+     * Add checkAnswer function
+     * Add helpNeeded function
+     * Add custom problem function
     */
-    $scope.problem = "No Problem Yet!";
-    var showStatus = function() {
-        this.status = true;
-    }
 
-    var hideStatus = function() {
-        this.status = false;
-    }
+    $scope.problem = "No Problem Yet!";
 
     var mathTypeObj = {
         mul: {
@@ -31,6 +25,7 @@ function MathController($scope) {
             hide: hideStatus,
             status: false
         },
+
         sub: {
             mainType: "Subtraction",
             mainTypeNum: 1,
@@ -39,6 +34,7 @@ function MathController($scope) {
             hide: hideStatus,
             showStatus: false
         },
+
         div: {
             mainType: "Division",
             mainTypeNum: 3,
@@ -47,6 +43,7 @@ function MathController($scope) {
             hide: hideStatus,
             showStatus: false
         },
+
         add: {
             mainType: "Addition",
             mainTypeNum: 0,
@@ -55,19 +52,25 @@ function MathController($scope) {
             hide: hideStatus,
             showStatus: false
         },
+
         cus: { // custom problem type
             mainType: "Custom"
         }
     }
-    $scope.mathType = [mathTypeObj.add, mathTypeObj.sub,
-        mathTypeObj.mul, mathTypeObj.div, mathTypeObj.cus
+
+    $scope.mathType = [
+        mathTypeObj.add, mathTypeObj.sub,
+        mathTypeObj.mul, mathTypeObj.div,
+        mathTypeObj.cus
     ];
+
     $scope.getProblem = function() {
         $scope.problem = math($scope.terms, $scope.subType); // assume types are set up
-    }
+    };
+
     $scope.problemType = function(type, subType) {
         $scope.problem = math(type, subType);
-    }
+    };
 
     function math(type, subType) {
         if (type === 0) {
@@ -85,7 +88,8 @@ function MathController($scope) {
         return Math.floor((Math.random() * 10000) + 1000);
     }
 
-    function customNum(max, min, end) { // max supposed to be 1 for 1, 10 for 10, by tens, min can be any number
+    // max supposed to be 1 for 1, 10 for 10, by tens, min can be any number
+    function customNum(max, min, end) {
         if (end === 5) {
             var endsInFive = [];
             for (var foo = 5; foo < 500; foo += 5) {
@@ -116,6 +120,7 @@ function MathController($scope) {
     function mulProblem(type) {
         var num;
         var otherNum;
+
         if (type === 0) { // this is for multiply by 11
             num = customNum(10000, 10);
             return num + 'x' + 11;
@@ -133,10 +138,19 @@ function MathController($scope) {
     function divProblem(type) {
         var num = customNum(1000, 200);
         var otherNum = customNum(30, 3);
+
         if (type === 0) {
             return num + '/' + otherNum + ' remander';
         } else {
             return num + '/' + otherNum;
         }
+    }
+
+    function showStatus() {
+        this.status = true;
+    }
+
+    function hideStatus() {
+        this.status = false;
     }
 }
