@@ -11,12 +11,12 @@ height:90%;
 background-color:gray;
 }
 .subType{
-/*background-color:orange; */
+background-color:orange; 
 height:10%;
 text-align:center;
 }
 .mainType{
-height:5%;
+height:10%;
 }
 .rmp{
 padding:0px;
@@ -54,3 +54,4 @@ text-align:center;
 .mainType:hover + .subtypes, .subtypes:hover {
     display: block;
 }
+

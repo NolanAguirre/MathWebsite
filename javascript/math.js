@@ -2,135 +2,282 @@ angular.module('mathApp', [])
     .controller('math', MathController);
 
 MathController.$inject = ['$scope'];
+
 function MathController($scope) {
     /* TODO:
-     * Add fractions function
-     * Add decimal function
-     * Change div, mul, add, and sub problem functions to  use decimal and fractions
-     * Change number range
-     * Add solver function
-     * Add checkAnswer function
-     * Add helpNeeded function
-     * Add custom problem function
-    */
-
-    $scope.problem = "No Problem Yet!";
-
-    var mathTypeObj = {
-        mul: {
-            mainType: "Multiplication",
-            mainTypeNum: 2,
-            types: ['By 11', 'Ends in five', 'Fractions']
-        },
-
-        sub: {
-            mainType: "Subtraction",
-            mainTypeNum: 1,
-            types: ['Decimals', 'Fractions']
-        },
-
-        div: {
-            mainType: "Division",
-            mainTypeNum: 3,
-            types: ['remander']
-        },
-
-        add: {
-            mainType: "Addition",
-            mainTypeNum: 0,
-            types: ['Decimals', 'Fractions']
-        },
-
-        cus: { // custom problem type
-            mainType: "Custom"
-        }
+     * Fix answer return results on decimals
+     * Make pseudo-class to update without refresh
+     * Fix answer checking
+     * clean up code
+     * Change variable names that are finished
+     * Create fractions for add and sub
+     * Fix spelling
+     * Do homework
+     * Sleep more
+     */
+    var foo; // set to current problem. to get answer
+    $scope.currentProblem = null;
+    $scope.answer = null;
+    $scope.changeCurrentProblem = function(problem, storeAnswer) {
+        $scope.currentProblem = problem;
+        foo = storeAnswer;
     }
+    $scope.newProblems = function() { // im cheating, will implement pseudo class later
+        refresh();
+    }
+    $scope.userAnswer = {
+        answer: 'No Answer Yet'
+    }
+    $scope.showAnswer = function() {
+        $scope.answer = foo;
+        correct();
+    }
+    $scope.categories = [{
+            name: addition(),
+            types: [decimalAdd(), fractionAdd()]
+        },
 
-    $scope.mathType = [
-        mathTypeObj.add, mathTypeObj.sub,
-        mathTypeObj.mul, mathTypeObj.div,
-        mathTypeObj.cus
+        {
+            name: subtraction(),
+            types: [decimalSub(), fractionSub()]
+        },
+
+
+        {
+            name: division(),
+            types: [remainder()]
+        },
+
+        {
+            name: multiplication(),
+            types: [byEleven(), endsInFive(), fractionMul(), square(),
+                cube()
+            ]
+        }
+
     ];
 
-    $scope.getProblem = function() {
-        $scope.problem = math($scope.terms, $scope.subType); // assume types are set up
-    };
-
-    $scope.problemType = function(type, subType) {
-        $scope.problem = math(type, subType);
-    };
-
-    function math(type, subType) {
-        if (type === 0) {
-            return addProblem();
-        } else if (type === 1) {
-            return subProblem();
-        } else if (type === 2) {
-            return mulProblem(subType);
+    function correct() {
+        if ($scope.userAnswer.answer === foo) {
+            $scope.correctness = "you got it right";
         } else {
-            return divProblem(subType);
+            $scope.correctness = "you got it wrong";
         }
     }
 
-    function randomNum() {
-        return Math.floor((Math.random() * 10000) + 1000);
+    function refresh() {
+            window.location.reload();
+        }
+        ////////////////////////// used for Multiplication problems
+    function multiplication() {
+        var num = randomNum(500, 100);
+        var otherNum = randomNum(500, 10);
+        return {
+            name: 'Multiplication',
+            answer: num * otherNum,
+            questions: num + ' * ' + otherNum
+        };
     }
 
-    // max supposed to be 1 for 1, 10 for 10, by tens, min can be any number
-    function customNum(max, min, end) {
-        if (end === 5) {
-            var endsInFive = [];
-            for (var foo = 5; foo < 500; foo += 5) {
-                if (foo % 10 === 0) {
-                    foo += 5;
+    function byEleven() {
+        var num = randomNum(100000, 1000);
+
+        return {
+            name: 'By Eleven',
+            answer: num * 11,
+            questions: num + ' * 11'
+        };
+    }
+
+    function endsInFive() {
+        var num = toFive(randomNum(1000, 10));
+        var otherNum = toFive(randomNum(1000, 10));
+
+        function toFive(number) {
+            return +number.toString().replace(/\d$/, '5');
+        }
+        return {
+            name: 'Ends in Five',
+            answer: num * otherNum,
+            questions: num + ' * ' + otherNum
+        };
+    }
+
+    function fractionMul() {
+        var randomFrac = randomFraction('mul');
+        return {
+            name: 'fraction',
+            answer: randomFrac.answer,
+            questions: randomFrac.question
+        };
+    }
+
+    function square() {
+        var num = randomNum(30, 10);
+        return {
+            name: 'Squares',
+            answer: Math.pow(num, 2),
+            questions: num + ' ^  2'
+        };
+    }
+
+    function cube() {
+            var num = randomNum(20, 3);
+            return {
+                name: 'Cubes',
+                answer: Math.pow(num, 3),
+                questions: num + ' ^ 3'
+            };
+        }
+        //////////////////////////////////  used for Division problems
+    function division() {
+        var num = randomNum(50, 5);
+        var otherNum = randomNum(30, 5);
+        var temp = num * otherNum; // insures whole number answer
+        return {
+            name: 'Division',
+            answer: num,
+            questions: temp + '/' + otherNum
+        };
+    }
+
+    function remainder() {
+            var num = randomNum(3000, 100);
+            var otherNum = randomNum(15, 3)
+            return {
+                name: 'Remainder',
+                answer: num % otherNum,
+                questions: num + '/' + otherNum + ' remainder'
+            };
+        }
+        //////////////////////////// used for Addition problems
+    function addition() {
+        var num = randomNum(10000, 100);
+        var otherNum = randomNum(10000, 100);
+        return {
+            name: 'Addition',
+            answer: num + otherNum,
+            questions: num + ' + ' + otherNum
+        };
+    }
+
+    function decimalAdd() {
+        var num = decimalNum();
+        var otherNum = decimalNum();
+        return {
+            name: 'Decimal',
+            answer: num + otherNum, // fix this 
+            questions: num + ' + ' + otherNum
+        };
+    }
+
+    function fractionAdd() {
+            var randomFrac = randomFraction('add');
+            return {
+                name: 'fraction',
+                answer: randomFrac.answer,
+                questions: randomFrac.question
+            };
+        }
+        ////////////////////////////////////////// used for Subtraction problems
+    function subtraction() {
+        var num = randomNum(10000, 100);
+        var otherNum = randomNum(10000, 100);
+        return {
+            name: 'Subtraction',
+            answer: num - otherNum,
+            questions: num + ' - ' + otherNum
+        };
+    }
+
+    function decimalSub() {
+        var num = decimalNum();
+        var otherNum = decimalNum();
+        return {
+            name: 'Decimal',
+            answer: num - otherNum,
+            questions: num + ' - ' + otherNum
+        };
+    }
+
+    function fractionSub() {
+            var randomFrac = randomFraction('sub');
+            return {
+                name: 'fraction',
+                answer: randomFrac.answer,
+                questions: randomFrac.question
+            };
+        }
+        /////////////////////////////////////////////////////////////////////// things get weird 
+    function randomFraction(type) { // returns two strings, spelling gets bad
+        if (type === 'mul') { // testing, else if an else statement's functions for returns have not be completed
+            return wholeNumber();
+        } else {
+            return wholeNumber();
+        }
+
+        function wholeNumber() { // really odd, but it has to return a very very very specific type of faction 
+            var wholeNum = randomNum(30, 5);
+            var denominator = randomNum(wholeNum + 3, wholeNum - 3);
+            var question = wholeNum + ' * ' + wholeNum + '/' +
+                denominator;
+            var answer;
+
+            function answer() { // solves problem, but keeps it as a fraction, dont try to understand, its not using logical math, just a pattern.
+                var temp = 'oops, i skipped temp';
+                var diffBetweenNumAndDen = wholeNum -
+                    denominator;
+                var numirator = diffBetweenNumAndDen *
+                    diffBetweenNumAndDen;
+                wholeNum = wholeNum + diffBetweenNumAndDen;
+                if (numirator >= denominator) {
+                    for (var foo = numirator; foo >=
+                        denominator; foo -= denominator) {
+                        wholeNum++;
+                        numirator -= denominator;
+                    }
                 }
-                endsInFive.push(foo);
+                simplify();
+
+                function simplify() { // simplifies fraction before its made into a string
+                    for (var x = 2; x < denominator; x++) {
+                        if (numirator % x === 0 &&
+                            denominator % x === 0) {
+                            numirator = numirator / x;
+                            denominator = denominator / x;
+                            simplify();
+                        }
+                    }
+                }
+                answer = wholeNum + ' ' + numirator + '/' +
+                    denominator;
             }
-            return endsInFive[Math.floor((Math.random() *
-                endsInFive.length))];
-        } else {
-            return Math.floor((Math.random() * max) + min);
+            answer();
+
+            return {
+                answer: answer,
+                question: question
+            };
+        }
+
+        function smallFractions() { // complete, listed todo
+
+        }
+
+        function randomWholeNumber() { // complete, listed in todo
+
         }
     }
-
-    function addProblem() {
-        var num = randomNum();
-        var otherNum = randomNum();
-        return num + '+' + otherNum;
+/////////////////////////////////////////////////////////// gets random numbers
+    function decimalNum() {
+        var num = (Math.random() * (2000 - 10) + 10).toFixed(2);
+        return num;
     }
 
-    function subProblem() {
-        var num = randomNum();
-        var otherNum = randomNum();
-        return num + '-' + otherNum;
+    function randomNum(max, min) {
+
+        var num = Math.floor((Math.random() * (max - min)) + min);
+        return num;
     }
 
-    function mulProblem(type) {
-        var num;
-        var otherNum;
-
-        if (type === 0) { // this is for multiply by 11
-            num = customNum(10000, 10);
-            return num + 'x' + 11;
-        } else if (type === 1) { // meant for ends in 5
-            num = customNum(1000, 10, 5);
-            otherNum = customNum(1000, 10, 5);
-            return num + 'x' + otherNum;
-        } else { // fractions
-            num = customNum(1000, 10);
-            otherNum = customNum(1000, 10);
-            return num + 'x' + otherNum;
-        }
-    }
-
-    function divProblem(type) {
-        var num = customNum(1000, 200);
-        var otherNum = customNum(30, 3);
-
-        if (type === 0) {
-            return num + '/' + otherNum + ' remainder';
-        } else {
-            return num + '/' + otherNum;
-        }
-    }
 }

@@ -19,15 +19,15 @@
 
         <div class="row">
             <div class="selection col-md-1 rmp">
-                <div ng-repeat="terms in mathType">
-                    <div class="mainType col-md-12">{{terms.mainType}}</div>
-
+                <div ng-repeat="type in categories">
+                    <div  ng-click="changeCurrentProblem(type.name.questions, type.name.answer)" class="mainType col-md-12">{{type.name.name}}</div>
                     <div class="subtypes">
-                        <div
-                            ng-repeat="subType in terms.types"
-                            ng-click="problemType(terms.mainTypeNum, terms.types.indexOf(subType))"
+                        <div 
+                            ng-click="changeCurrentProblem(sub.questions, sub.answer)"
+                            ng-repeat="sub in type.types"
                             class="subType col-md-12">
-                            {{subType}}
+                                {{sub.name}}
+                            
                         </div>
                     </div>
                 </div>
@@ -36,30 +36,30 @@
             <!-- To Do, add custom selection area, make help box, include shortcuts-->
             <div class=" mainbody col-md-11 rmp">
                 <div class="col-md-10 numberDisplay">
-                    <h1 class="problem">{{problem}}</h1>
+                    <h1 class="problem">{{currentProblem}}</h1>
                 </div>
 
                 <div class="col-md-2 help">
                     <div>
-                        <h2>Need Help?</h2>
+                      <button><h2>Need Help?</h2></button>
                     </div>
                 </div>
 
                 <div class="col-md-10 utilities ">
                     <div class="answerDisplay col-md-4">
-                        <div ng-show="answerSubmitStatus">
-                            {{result}}
-                            <p ng-show="answerDisplay">{{answer}}</p>
+                        <div>
+                            {{answer}}
+                            {{correctness}}
                         </div>
                     </div>
 
                     <div class="col-md-4">
-                        <input type="text" />
+                        <input type="text" ng-model="userAnswer.answer"></input>
                     </div>
 
                     <div class="col-md-4">
-                        <button ng-click="checkForInput()">Submit Answer</button>
-                        <button ng-click="getProblem()">New Problem</button>
+                        <button ng-click="showAnswer()">Submit Answer</button>
+                        <button ng-click="newProblems()">New Problem</button>
                     </div>
                 </div>
             </div>
