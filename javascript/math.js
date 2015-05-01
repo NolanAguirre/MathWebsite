@@ -210,21 +210,20 @@ function MathController($scope) {
         }
         /////////////////////////////////////////////////////////////////////// things get weird 
     function randomFraction(type) { // returns two strings, spelling gets bad
-        if (type === 'mul') { // testing, else if an else statement's functions for returns have not be completed
+        if (type === 'mul') { // testing, else if and else statement's functions for returns have not be completed
             return wholeNumber();
         } else {
             return wholeNumber();
         }
 
-        function wholeNumber() { // really odd, but it has to return a very very very specific type of faction 
+        function wholeNumber() { // really odd, but it has to return a very very very specific type of fraction 
             var wholeNum = randomNum(30, 5);
             var denominator = randomNum(wholeNum + 3, wholeNum - 3);
             var question = wholeNum + ' * ' + wholeNum + '/' +
                 denominator;
             var answer;
 
-            function answer() { // solves problem, but keeps it as a fraction, dont try to understand, its not using logical math, just a pattern.
-                var temp = 'oops, i skipped temp';
+            function answer() { // solves problem, but keeps it as a fraction, dont try to understand, its not using logical math, just a pattern. however it works nicely 
                 var diffBetweenNumAndDen = wholeNum -
                     denominator;
                 var numirator = diffBetweenNumAndDen *
@@ -270,7 +269,7 @@ function MathController($scope) {
     }
 /////////////////////////////////////////////////////////// gets random numbers
     function decimalNum() {
-        var num = (Math.random() * (2000 - 10) + 10).toFixed(2);
+        var num = (Math.random() * (2000 - 10) + 10).toFixed(2); 
         return num;
     }
 
