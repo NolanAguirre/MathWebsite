@@ -20,14 +20,13 @@
         <div class="row">
             <div class="selection col-md-1 rmp">
                 <div ng-repeat="type in categories">
-                    <div  ng-click="documentCurrentProblem(type.name.questions, type.name.answer,type.name)" class="mainType col-md-12">{{type.name.name}}</div>
+                    <div ng-click="documentCurrentProblem(type.name.questions, type.name.answer,type.name)"
+                    class="mainType col-md-12">{{type.name.name}}</div>
                     <div class="subtypes">
-                        <div 
-                            ng-click="documentCurrentProblem(sub.questions, sub.answer, sub)"
-                            ng-repeat="sub in type.types"
-                            class="subType col-md-12">
-                                {{sub.name}}
-                            
+                        <div ng-click="documentCurrentProblem(sub.questions, sub.answer, sub)" ng-repeat="sub in type.types"
+                        class="subType col-md-12">
+                            {{sub.name}}
+
                         </div>
                     </div>
                 </div>
@@ -41,11 +40,12 @@
 
                 <div class="col-md-2 help">
                     <div>
-                      <button ng-click="needHelp()"><h2>Need Help?</h2></button>
+                        <button ng-click="needHelp()">
+                            <h2>Need Help?</h2></button>
                     </div>
 
                     <div>
-                         {{strategy}}
+                        {{strategy}}
                     </div>
                 </div>
 
