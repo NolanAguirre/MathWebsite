@@ -5,69 +5,54 @@ MathController.$inject = ['$scope'];
 
 function MathController($scope) {
     /* TODO:
-     * Fix answer return results on decimals
-     * Make pseudo-class to update without refresh
-     * Fix answer checking
+     * make help button useful, consult with students
      * clean up code
-     * Change variable names that are finished
-     * Create fractions for add and sub
      * Fix spelling
-     * Do homework
+     * fix new problem button
      * Sleep more
      */
-    var foo; // set to current problem. to get answer
+    var currentAnswer; // set to current problem. to get answer
+    var problemType;
     $scope.currentProblem = null;
     $scope.answer = null;
-    $scope.changeCurrentProblem = function(problem, storeAnswer) {
+    $scope.documentCurrentProblem = function(problem, storeAnswer, type) {
         $scope.currentProblem = problem;
-        foo = storeAnswer;
+        currentAnswer = storeAnswer;
+        problemType = type;
     }
-    $scope.newProblems = function() { // im cheating, will implement pseudo class later
-        refresh();
-    }
+    
     $scope.userAnswer = {
         answer: 'No Answer Yet'
     }
     $scope.showAnswer = function() {
-        $scope.answer = foo;
-        correct();
+        $scope.answer = 'The answer is ' + currentAnswer;
     }
-    $scope.categories = [{
+$scope.categories ={
+    
+        
+            add:{
             name: addition(),
-            types: [decimalAdd(), fractionAdd()]
+            types: [decimalAdd()]
         },
 
-        {
+        sub:{
             name: subtraction(),
-            types: [decimalSub(), fractionSub()]
+            types: [decimalSub()]
         },
 
 
-        {
+       div: {
             name: division(),
             types: [remainder()]
         },
 
-        {
+        mul:{
             name: multiplication(),
-            types: [byEleven(), endsInFive(), fractionMul(), square(),
-                cube()
-            ]
+            types: [byEleven(), endsInFive(), fractionMul(), square(),cube()]
         }
 
-    ];
+        };
 
-    function correct() {
-        if ($scope.userAnswer.answer === foo) {
-            $scope.correctness = "you got it right";
-        } else {
-            $scope.correctness = "you got it wrong";
-        }
-    }
-
-    function refresh() {
-            window.location.reload();
-        }
         ////////////////////////// used for Multiplication problems
     function multiplication() {
         var num = randomNum(500, 100);
@@ -75,7 +60,8 @@ function MathController($scope) {
         return {
             name: 'Multiplication',
             answer: num * otherNum,
-            questions: num + ' * ' + otherNum
+            questions: num + ' * ' + otherNum,
+            strategy: 'um, just be good at math, lots of ways'
         };
     }
 
@@ -85,7 +71,8 @@ function MathController($scope) {
         return {
             name: 'By Eleven',
             answer: num * 11,
-            questions: num + ' * 11'
+            questions: num + ' * 11',
+            strategy:'do a fibo sequance, n + (n+1)'
         };
     }
 
@@ -99,16 +86,18 @@ function MathController($scope) {
         return {
             name: 'Ends in Five',
             answer: num * otherNum,
-            questions: num + ' * ' + otherNum
+            questions: num + ' * ' + otherNum,
+            strategy: 'idk'
         };
     }
 
     function fractionMul() {
-        var randomFrac = randomFraction('mul');
+        var randomFrac = randomFraction();
         return {
             name: 'fraction',
             answer: randomFrac.answer,
-            questions: randomFrac.question
+            questions: randomFrac.questions,
+            strategy: 'ask in person'
         };
     }
 
@@ -117,7 +106,8 @@ function MathController($scope) {
         return {
             name: 'Squares',
             answer: Math.pow(num, 2),
-            questions: num + ' ^  2'
+            questions: num + ' ^  2',
+            strategy: 'LEARN YOUR SQUARES'
         };
     }
 
@@ -126,7 +116,8 @@ function MathController($scope) {
             return {
                 name: 'Cubes',
                 answer: Math.pow(num, 3),
-                questions: num + ' ^ 3'
+                questions: num + ' ^ 3',
+                strategy: 'see squares' 
             };
         }
         //////////////////////////////////  used for Division problems
@@ -137,7 +128,8 @@ function MathController($scope) {
         return {
             name: 'Division',
             answer: num,
-            questions: temp + '/' + otherNum
+            questions: temp + '/' + otherNum,
+            strategy:'pass 3rd grade'
         };
     }
 
@@ -147,7 +139,8 @@ function MathController($scope) {
             return {
                 name: 'Remainder',
                 answer: num % otherNum,
-                questions: num + '/' + otherNum + ' remainder'
+                questions: num + '/' + otherNum + ' remainder',
+                strategy:'to lazy at the moment'
             };
         }
         //////////////////////////// used for Addition problems
@@ -157,28 +150,22 @@ function MathController($scope) {
         return {
             name: 'Addition',
             answer: num + otherNum,
-            questions: num + ' + ' + otherNum
+            questions: num + ' + ' + otherNum,
+            strategy:'pass first grade'
         };
     }
 
     function decimalAdd() {
         var num = decimalNum();
         var otherNum = decimalNum();
+        var answer = num + otherNum
         return {
             name: 'Decimal',
-            answer: num + otherNum, // fix this 
-            questions: num + ' + ' + otherNum
+            answer: answer.toFixed(2),
+            questions: num.toFixed(2) + ' + ' + otherNum.toFixed(2),
+            strategy:'move decimal place, if it helps'
         };
     }
-
-    function fractionAdd() {
-            var randomFrac = randomFraction('add');
-            return {
-                name: 'fraction',
-                answer: randomFrac.answer,
-                questions: randomFrac.question
-            };
-        }
         ////////////////////////////////////////// used for Subtraction problems
     function subtraction() {
         var num = randomNum(10000, 100);
@@ -186,37 +173,25 @@ function MathController($scope) {
         return {
             name: 'Subtraction',
             answer: num - otherNum,
-            questions: num + ' - ' + otherNum
+            questions: num + ' - ' + otherNum,
+             strategy:'pass first grade'
         };
     }
 
     function decimalSub() {
         var num = decimalNum();
         var otherNum = decimalNum();
+        var answer = num - otherNum;
         return {
             name: 'Decimal',
-            answer: num - otherNum,
-            questions: num + ' - ' + otherNum
+            answer: answer.toFixed(2),
+            questions: num.toFixed(2) + ' - ' + otherNum.toFixed(2),
+            strategy: 'see adding decimals, to tired at the moment'
         };
     }
 
-    function fractionSub() {
-            var randomFrac = randomFraction('sub');
-            return {
-                name: 'fraction',
-                answer: randomFrac.answer,
-                questions: randomFrac.question
-            };
-        }
-        /////////////////////////////////////////////////////////////////////// things get weird 
-    function randomFraction(type) { // returns two strings, spelling gets bad
-        if (type === 'mul') { // testing, else if and else statement's functions for returns have not be completed
-            return wholeNumber();
-        } else {
-            return wholeNumber();
-        }
-
-        function wholeNumber() { // really odd, but it has to return a very very very specific type of fraction 
+/////////////////////////////////////////////////////////////////////// things get weird 
+        function randomFraction() { // really odd, but it has to return a very very very specific type of fraction 
             var wholeNum = randomNum(30, 5);
             var denominator = randomNum(wholeNum + 3, wholeNum - 3);
             var question = wholeNum + ' * ' + wholeNum + '/' +
@@ -255,28 +230,24 @@ function MathController($scope) {
 
             return {
                 answer: answer,
-                question: question
+                questions: question,
             };
         }
 
-        function smallFractions() { // complete, listed todo
-
-        }
-
-        function randomWholeNumber() { // complete, listed in todo
-
-        }
-    }
-/////////////////////////////////////////////////////////// gets random numbers
+ /////////////////////////////////////////////////////////// gets random numbers
     function decimalNum() {
-        var num = (Math.random() * (2000 - 10) + 10).toFixed(2); 
+        var num = Math.random() * (2000 - 10) + 1; 
         return num;
     }
 
     function randomNum(max, min) {
-
         var num = Math.floor((Math.random() * (max - min)) + min);
         return num;
     }
+/////////////////////////////////////////////////////////// need help button
+$scope.needHelp = function(){
+    $scope.strategy = problemType.strategy;
+    
+}
 
 }
