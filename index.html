@@ -13,18 +13,18 @@
     <div class="fluid-container">
         <div class="row">
             <div class="col-md-12 header">
-                <h1 class="intro">Welcome to the sphs numbersense practice website</h1>
+                <h1 class="headerText">Welcome to the SPHS Number Sense practice website</h1>
             </div>
         </div>
 
         <div class="row">
-            <div class="selection col-md-1 rmp">
+            <div class="selectionPanel col-md-1 rmp">
                 <div ng-repeat="type in categories">
                     <div ng-click="documentCurrentProblem(type.name.questions, type.name.answer,type.name)"
-                    class="mainType col-md-12">{{type.name.name}}</div>
-                    <div class="subtypes">
+                    class="categories col-md-12">{{type.name.name}}</div>
+                    <div class="subCategories">
                         <div ng-click="documentCurrentProblem(sub.questions, sub.answer, sub)" ng-repeat="sub in type.types"
-                        class="subType col-md-12">
+                        class="subCategory col-md-12">
                             {{sub.name}}
 
                         </div>
@@ -38,14 +38,16 @@
                     <h1 class="problem">{{currentProblem}}</h1>
                 </div>
 
-                <div class="col-md-2 help">
+                <div class="col-md-2 helpPanel">
                     <div>
                         <button ng-click="needHelp()">
                             <h2>Need Help?</h2></button>
                     </div>
 
                     <div>
+                        <p class="strategy">
                         {{strategy}}
+                        </p>
                     </div>
                 </div>
 
