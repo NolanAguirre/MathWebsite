@@ -35,7 +35,7 @@
             <!-- To Do, make help box, include shortcuts-->
             <div class=" mainbody col-md-11 rmp">
                 <div class="col-md-10 numberDisplay">
-                    <h1 class="problem">{{currentProblem}}</h1>
+                    <h1 class="problemDisplay">{{currentProblem}}</h1>
                 </div>
 
                 <div class="col-md-2 helpPanel">
@@ -54,7 +54,7 @@
                 <div class="col-md-10 utilities ">
                     <div class="answerDisplay col-md-4">
                         <div>
-                            <h1>{{answer}}</h1>
+                            <h3>{{answer}}</h3>
                         </div>
                     </div>
 
@@ -64,7 +64,7 @@
 
                     <div class="col-md-4">
                         <button ng-click="showAnswer()">Submit Answer</button>
-                        <button ng-click="changeCurrentProblemButton()">New Problem</button>
+                        <button ng-click="refreshProblem()">New Problem</button>
                     </div>
                 </div>
             </div>

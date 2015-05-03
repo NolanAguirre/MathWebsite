@@ -9,11 +9,10 @@ function MathController($scope) {
      * clean up code
      * Fix spelling
      * fix new problem button
-     * Sleep more
      */
     var currentAnswer; // set to current problem. to get answer
     var problemType;
-    $scope.currentProblem = null;
+    $scope.currentProblem = 'No Problem Yet!';
     $scope.answer = null;
     $scope.documentCurrentProblem = function(problem, storeAnswer, type) {
         $scope.currentProblem = problem;
@@ -25,7 +24,13 @@ function MathController($scope) {
         answer: 'No Answer Yet'
     }
     $scope.showAnswer = function() {
-        $scope.answer = 'The answer is ' + currentAnswer;
+        var correct;
+        if($scope.userAnswer.answer === currentAnswer){
+            correct = 'correct.';
+        } else {
+            correct = 'wrong .';
+        }
+        $scope.answer = 'The answer is ' + currentAnswer + ". You are " + correct;
     }
 $scope.categories ={
     
@@ -52,7 +57,9 @@ $scope.categories ={
         }
 
         };
-
+$scope.refreshProblem = function(){
+  problemType = new problemType.types()
+}
         ////////////////////////// used for Multiplication problems
     function multiplication() {
         var num = randomNum(500, 100);
@@ -67,10 +74,10 @@ $scope.categories ={
 
     function byEleven() {
         var num = randomNum(100000, 1000);
-
+        var answer = num * 11
         return {
             name: 'By Eleven',
-            answer: num * 11,
+            answer: answer.toString(),
             questions: num + ' * 11',
             strategy:'do a fibo sequance, n + (n+1)'
         };
@@ -79,13 +86,13 @@ $scope.categories ={
     function endsInFive() {
         var num = toFive(randomNum(1000, 10));
         var otherNum = toFive(randomNum(1000, 10));
-
+        var answer = num * otherNum;
         function toFive(number) {
             return +number.toString().replace(/\d$/, '5');
         }
         return {
             name: 'Ends in Five',
-            answer: num * otherNum,
+            answer: answer.toString(),
             questions: num + ' * ' + otherNum,
             strategy: 'idk'
         };
@@ -95,7 +102,7 @@ $scope.categories ={
         var randomFrac = randomFraction();
         return {
             name: 'fraction',
-            answer: randomFrac.answer,
+            answer: randomFrac.answer.toString(),
             questions: randomFrac.questions,
             strategy: 'ask in person'
         };
@@ -105,7 +112,7 @@ $scope.categories ={
         var num = randomNum(30, 10);
         return {
             name: 'Squares',
-            answer: Math.pow(num, 2),
+            answer: Math.pow(num, 2).toString(),
             questions: num + ' ^  2',
             strategy: 'LEARN YOUR SQUARES'
         };
@@ -115,7 +122,7 @@ $scope.categories ={
             var num = randomNum(20, 3);
             return {
                 name: 'Cubes',
-                answer: Math.pow(num, 3),
+                answer: Math.pow(num, 3).toString(),
                 questions: num + ' ^ 3',
                 strategy: 'see squares' 
             };
@@ -127,7 +134,7 @@ $scope.categories ={
         var temp = num * otherNum; // insures whole number answer
         return {
             name: 'Division',
-            answer: num,
+            answer: num.toString(),
             questions: temp + '/' + otherNum,
             strategy:'pass 3rd grade'
         };
@@ -136,9 +143,10 @@ $scope.categories ={
     function remainder() {
             var num = randomNum(3000, 100);
             var otherNum = randomNum(15, 3)
+            var answer = num % otherNum;
             return {
                 name: 'Remainder',
-                answer: num % otherNum,
+                answer: answer.toString(),
                 questions: num + '/' + otherNum + ' remainder',
                 strategy:'to lazy at the moment'
             };
@@ -147,9 +155,10 @@ $scope.categories ={
     function addition() {
         var num = randomNum(10000, 100);
         var otherNum = randomNum(10000, 100);
+        var answer = num + otherNum;
         return {
             name: 'Addition',
-            answer: num + otherNum,
+            answer: answer.toString(),
             questions: num + ' + ' + otherNum,
             strategy:'pass first grade'
         };
@@ -170,9 +179,10 @@ $scope.categories ={
     function subtraction() {
         var num = randomNum(10000, 100);
         var otherNum = randomNum(10000, 100);
+        var answer = num - otherNum;
         return {
             name: 'Subtraction',
-            answer: num - otherNum,
+            answer: answer.toString(),
             questions: num + ' - ' + otherNum,
              strategy:'pass first grade'
         };
