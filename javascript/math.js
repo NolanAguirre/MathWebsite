@@ -5,21 +5,16 @@ MathController.$inject = ['$scope'];
 
 function MathController($scope) {
     /* TODO:
-     * make help button useful, consult with students
-     * clean up code
-     * Fix spelling
-     * fix new problem button
+     * Make refresh work
      */
-    var currentAnswer; // set to current problem. to get answer
+    var currentAnswer;
     var problemType;
-    $scope.currentProblem = 'No Problem Yet!';
     $scope.answer = null;
     $scope.documentCurrentProblem = function(problem, storeAnswer, type) {
         $scope.currentProblem = problem;
         currentAnswer = storeAnswer;
         problemType = type;
-    }
-    
+    }  
     $scope.userAnswer = {
         answer: 'No Answer Yet'
     }
@@ -32,34 +27,44 @@ function MathController($scope) {
         }
         $scope.answer = 'The answer is ' + currentAnswer + ". You are " + correct;
     }
-$scope.categories ={
+$scope.categories = {
+
     
-        
-            add:{
-            name: addition(),
-            types: [decimalAdd()]
-        },
+          add:{
+           name: addition(),
+           types: [decimalAdd()]
+       },
 
-        sub:{
-            name: subtraction(),
-            types: [decimalSub()]
-        },
-
-
-       div: {
-            name: division(),
-            types: [remainder()]
-        },
+       sub:{
+           name: subtraction(),
+         types: [decimalSub()]
+         },
+     div: {
+           name: division(),
+           types: [remainder()]
+       },
 
         mul:{
-            name: multiplication(),
-            types: [byEleven(), endsInFive(), fractionMul(), square(),cube()]
-        }
+           name: multiplication(),
+           types: [byEleven(), endsInFive(), fractionMul(), square(),cube()]
+   }
 
-        };
-$scope.refreshProblem = function(){
-  problemType = new problemType.types()
-}
+       };
+$scope.refreshProblem = function (){
+    $scope.categories.add.name = addition();
+    $scope.categories.add.types = [decimalAdd()];
+    $scope.categories.sub.name = subtraction();
+    $scope.categories.sub.types = [decimalAdd()];
+    $scope.categories.div.name = division();
+    $scope.categories.div.types = [remainder()];
+    $scope.categories.mul.name = multiplication();
+    $scope.categories.mul.types = [byEleven(), endsInFive(), fractionMul(), square(),cube()];
+    
+    
+
+    };
+   
+      
         ////////////////////////// used for Multiplication problems
     function multiplication() {
         var num = randomNum(500, 100);
