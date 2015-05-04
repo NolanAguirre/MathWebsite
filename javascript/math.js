@@ -1,53 +1,63 @@
 angular.module('mathApp', [])
     .controller('math', MathController);
+
 function MathController() {
-  var vm = this;
-vm.problemTypes = [
-        {
-          mainType: { name:'Addition', generate: addition },
-          subTypes: [{  
-                  name:'Decimal',
-                  generate: decimalAdd
-                  }]
-        },
-        {
-            mainType: {name: 'Subtraction', generate: subtraction },
-            subTypes: [{name:'Decimal',
-                        generate: decimalSub}]
-        },
-        {
-            mainType: {name:'Division', generate: division},
-            subTypes: [{name:'Remainder', generate: remainder}]
-        },
-        {
-            mainType: {name: 'Multiplication', generate: multiplication},
-            subTypes: [ {
-            name: 'Ends in fives',
-            generate: endsInFive
-        },
-        {
-            name: 'Elevens',
-            generate: eleven
-        },
-        {
-            name: 'Fractions', 
-            generate: fraction
-        },
-        {
-            name: 'Square',
-            generate: square
-        },
-        {
-              name: 'Cube',
-              generate: cube
-         }]
+    var vm = this;
+    vm.problemTypes = [{
+            mainType: {
+                name: 'Addition',
+                generate: addition
+            },
+            subTypes: [{
+                name: 'Decimal',
+                generate: decimalAdd
+            }]
+        }, {
+            mainType: {
+                name: 'Subtraction',
+                generate: subtraction
+            },
+            subTypes: [{
+                name: 'Decimal',
+                generate: decimalSub
+            }]
+        }, {
+            mainType: {
+                name: 'Division',
+                generate: division
+            },
+            subTypes: [{
+                name: 'Remainder',
+                generate: remainder
+            }]
+        }, {
+            mainType: {
+                name: 'Multiplication',
+                generate: multiplication
+            },
+            subTypes: [{
+                name: 'Ends in fives',
+                generate: endsInFive
+            }, {
+                name: 'Elevens',
+                generate: eleven
+            }, {
+                name: 'Fractions',
+                generate: fraction
+            }, {
+                name: 'Square',
+                generate: square
+            }, {
+                name: 'Cube',
+                generate: cube
+            }]
         }
-       
-    ];   
+
+    ];
     vm.currentProblem = addition();
 
     vm.submitAnswer = submitAnswer;
-    
+
     function submitAnswer() {
         if (vm.currentProblem.answer === vm.userAnswer) {
             vm.submitedAnswer = 'correct';
@@ -56,7 +66,7 @@ vm.problemTypes = [
         }
     }
 
-        function multiplication() {
+    function multiplication() {
         var num = randomNum(500, 100);
         var otherNum = randomNum(500, 10);
         return {
@@ -78,13 +88,14 @@ vm.problemTypes = [
         var num = toFive(randomNum(1000, 10));
         var otherNum = toFive(randomNum(1000, 10));
         var answer = num * otherNum;
+
         function toFive(number) {
             return +number.toString().replace(/\d$/, '5');
         }
         return {
             answer: answer.toString(),
             questions: num + ' * ' + otherNum
-            };
+        };
     }
 
     function fraction() {
@@ -92,7 +103,7 @@ vm.problemTypes = [
         return {
             answer: randomFrac.answer.toString(),
             questions: randomFrac.questions
-             };
+        };
     }
 
     function square() {
@@ -142,14 +153,14 @@ vm.problemTypes = [
     }
 
     function decimalAdd() {
-        var num = decimalNum();
-        var otherNum = decimalNum();
-        var answer = num + otherNum
-        return {
-            answer: answer.toFixed(2),
-            questions: num.toFixed(2) + ' + ' + otherNum.toFixed(2)
-        };
-    }
+            var num = decimalNum();
+            var otherNum = decimalNum();
+            var answer = num + otherNum
+            return {
+                answer: answer.toFixed(2),
+                questions: num.toFixed(2) + ' + ' + otherNum.toFixed(2)
+            };
+        }
         ////////////////////////////////////////// used for Subtraction problems
     function subtraction() {
         var num = randomNum(10000, 100);
@@ -171,53 +182,53 @@ vm.problemTypes = [
         };
     }
 
-/////////////////////////////////////////////////////////////////////// things get weird 
-        function randomFraction() { // really odd, but it has to return a very very very specific type of fraction 
-            var wholeNum = randomNum(30, 5);
-            var denominator = randomNum(wholeNum + 3, wholeNum - 3);
-            var question = wholeNum + ' * ' + wholeNum + '/' +
+    /////////////////////////////////////////////////////////////////////// things get weird 
+    function randomFraction() { // really odd, but it has to return a very very very specific type of fraction 
+        var wholeNum = randomNum(30, 5);
+        var denominator = randomNum(wholeNum + 3, wholeNum - 3);
+        var question = wholeNum + ' * ' + wholeNum + '/' +
+            denominator;
+        var answer;
+
+        function answer() { // solves problem, but keeps it as a fraction, dont try to understand, its not using logical math, just a pattern. however it works nicely 
+            var diffBetweenNumAndDen = wholeNum -
                 denominator;
-            var answer;
-
-            function answer() { // solves problem, but keeps it as a fraction, dont try to understand, its not using logical math, just a pattern. however it works nicely 
-                var diffBetweenNumAndDen = wholeNum -
-                    denominator;
-                var numirator = diffBetweenNumAndDen *
-                    diffBetweenNumAndDen;
-                wholeNum = wholeNum + diffBetweenNumAndDen;
-                if (numirator >= denominator) {
-                    for (var foo = numirator; foo >=
-                        denominator; foo -= denominator) {
-                        wholeNum++;
-                        numirator -= denominator;
-                    }
+            var numirator = diffBetweenNumAndDen *
+                diffBetweenNumAndDen;
+            wholeNum = wholeNum + diffBetweenNumAndDen;
+            if (numirator >= denominator) {
+                for (var foo = numirator; foo >=
+                    denominator; foo -= denominator) {
+                    wholeNum++;
+                    numirator -= denominator;
                 }
-                simplify();
-
-                function simplify() { // simplifies fraction before its made into a string
-                    for (var x = 2; x < denominator; x++) {
-                        if (numirator % x === 0 &&
-                            denominator % x === 0) {
-                            numirator = numirator / x;
-                            denominator = denominator / x;
-                            simplify();
-                        }
-                    }
-                }
-                answer = wholeNum + ' ' + numirator + '/' +
-                    denominator;
             }
-            answer();
+            simplify();
 
-            return {
-                answer: answer,
-                questions: question,
-            };
+            function simplify() { // simplifies fraction before its made into a string
+                for (var x = 2; x < denominator; x++) {
+                    if (numirator % x === 0 &&
+                        denominator % x === 0) {
+                        numirator = numirator / x;
+                        denominator = denominator / x;
+                        simplify();
+                    }
+                }
+            }
+            answer = wholeNum + ' ' + numirator + '/' +
+                denominator;
         }
+        answer();
 
- /////////////////////////////////////////////////////////// gets random numbers
+        return {
+            answer: answer,
+            questions: question,
+        };
+    }
+
+    /////////////////////////////////////////////////////////// gets random numbers
     function decimalNum() {
-        var num = Math.random() * (2000 - 10) + 1; 
+        var num = Math.random() * (2000 - 10) + 1;
         return num;
     }
 
@@ -225,7 +236,7 @@ vm.problemTypes = [
         var num = Math.floor((Math.random() * (max - min)) + min);
         return num;
     }
-    
-    
-    
+
+
+
 };
