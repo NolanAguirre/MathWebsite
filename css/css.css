@@ -1,4 +1,4 @@
-/* make this prettier*/
+
 .header{
 height: 10%;
  background: linear-gradient(#8181F7, #08088A);
@@ -7,19 +7,18 @@ height: 10%;
 text-align: center;
 color: #FFBF00;
 }
-.selectionPanel{
+.problemTypePanel{
 height:90%;
 border-right: 3px solid;
 }
 .subCategory{ 
 background-color:white;
-height:7%;
+height:10%;
 text-align:center;
 margin-left: 10px;
 box-shadow: 10px 0 5px -2px #888;
 border-bottom: 5px solid;
 line-height: 50px;
-
 }
 .categories{
 height:10%;
@@ -30,24 +29,17 @@ padding:0px;
 }
 .mainbody{
 height:90%;
-/*background-color:yellow; */
 }
-.helpPanel{
-background-color:#0000FF;
-height:100%;
-float:right;
-}
-.numberDisplay{
-/*background-color:#8A0829; */
-height:85%;
-padding-top:10%;
-}
-.utilities{
-background-color:;
+.submitAndCheck{
 height:15%;
+border-top: 3px solid;
 }
 .answerDisplay{
 float:right;
+}
+.numberDisplay{
+height:85%;
+padding-top:10%;
 }
 
 .problemDisplay{

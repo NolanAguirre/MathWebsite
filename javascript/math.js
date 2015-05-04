@@ -4,34 +4,24 @@ function MathController() {
   var vm = this;
 vm.problemTypes = [
         {
-          name: 'Addition',
-          generate: addition 
+          mainType: { name:'Addition', generate: addition },
+          subTypes: [{  
+                  name:'Decimal',
+                  generate: decimalAdd
+                  }]
         },
         {
-            name:'Decimal',
-            generate: decimalAdd
+            mainType: {name: 'Subtraction', generate: subtraction },
+            subTypes: [{name:'Decimal',
+                        generate: decimalSub}]
         },
         {
-            name:'Subtraction',
-            generate: subtraction
+            mainType: {name:'Division', generate: division},
+            subTypes: [{name:'Remainder', generate: remainder}]
         },
         {
-            name: 'Decimal',
-            generate: decimalSub
-        },
-        {
-            name: 'Division',
-            generate: division
-        },
-        {
-            name: 'Remainder', 
-            generate: remainder
-        },
-        {
-            name: 'Multiplication', 
-            generate: multiplication
-        },
-        {
+            mainType: {name: 'Multiplication', generate: multiplication},
+            subTypes: [ {
             name: 'Ends in fives',
             generate: endsInFive
         },
@@ -50,7 +40,9 @@ vm.problemTypes = [
         {
               name: 'Cube',
               generate: cube
-         }
+         }]
+        }
+       
     ];   
     vm.currentProblem = addition();
 
