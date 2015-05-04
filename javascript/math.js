@@ -1,90 +1,84 @@
 angular.module('mathApp', [])
     .controller('math', MathController);
+function MathController() {
+  var vm = this;
+vm.problemTypes = [
+        {
+          name: 'Addition',
+          generate: addition 
+        },
+        {
+            name:'Decimal',
+            generate: decimalAdd
+        },
+        {
+            name:'Subtraction',
+            generate: subtraction
+        },
+        {
+            name: 'Decimal',
+            generate: decimalSub
+        },
+        {
+            name: 'Division',
+            generate: division
+        },
+        {
+            name: 'Remainder', 
+            generate: remainder
+        },
+        {
+            name: 'Multiplication', 
+            generate: multiplication
+        },
+        {
+            name: 'Ends in fives',
+            generate: endsInFive
+        },
+        {
+            name: 'Elevens',
+            generate: eleven
+        },
+        {
+            name: 'Fractions', 
+            generate: fraction
+        },
+        {
+            name: 'Square',
+            generate: square
+        },
+        {
+              name: 'Cube',
+              generate: cube
+         }
+    ];   
+    vm.currentProblem = addition();
 
-MathController.$inject = ['$scope'];
-
-function MathController($scope) {
-    /* TODO:
-     * Make refresh work
-     */
-    var currentAnswer;
-    var problemType;
-    $scope.answer = null;
-    $scope.documentCurrentProblem = function(problem, storeAnswer, type) {
-        $scope.currentProblem = problem;
-        currentAnswer = storeAnswer;
-        problemType = type;
-    }  
-    $scope.userAnswer = {
-        answer: 'No Answer Yet'
-    }
-    $scope.showAnswer = function() {
-        var correct;
-        if($scope.userAnswer.answer === currentAnswer){
-            correct = 'correct.';
+    vm.submitAnswer = submitAnswer;
+    
+    function submitAnswer() {
+        if (vm.currentProblem.answer === vm.userAnswer) {
+            vm.submitedAnswer = 'correct';
         } else {
-            correct = 'wrong .';
+            vm.submitedAnswer = 'Incorrect! Correct answer is ' + vm.currentProblem.answer;
         }
-        $scope.answer = 'The answer is ' + currentAnswer + ". You are " + correct;
     }
-$scope.categories = {
 
-    
-          add:{
-           name: addition(),
-           types: [decimalAdd()]
-       },
-
-       sub:{
-           name: subtraction(),
-         types: [decimalSub()]
-         },
-     div: {
-           name: division(),
-           types: [remainder()]
-       },
-
-        mul:{
-           name: multiplication(),
-           types: [byEleven(), endsInFive(), fractionMul(), square(),cube()]
-   }
-
-       };
-$scope.refreshProblem = function (){
-    $scope.categories.add.name = addition();
-    $scope.categories.add.types = [decimalAdd()];
-    $scope.categories.sub.name = subtraction();
-    $scope.categories.sub.types = [decimalAdd()];
-    $scope.categories.div.name = division();
-    $scope.categories.div.types = [remainder()];
-    $scope.categories.mul.name = multiplication();
-    $scope.categories.mul.types = [byEleven(), endsInFive(), fractionMul(), square(),cube()];
-    
-    
-
-    };
-   
-      
-        ////////////////////////// used for Multiplication problems
-    function multiplication() {
+        function multiplication() {
         var num = randomNum(500, 100);
         var otherNum = randomNum(500, 10);
         return {
-            name: 'Multiplication',
             answer: num * otherNum,
-            questions: num + ' * ' + otherNum,
-            strategy: 'um, just be good at math, lots of ways'
+            questions: num + ' * ' + otherNum
         };
     }
 
-    function byEleven() {
+    function eleven() {
         var num = randomNum(100000, 1000);
         var answer = num * 11
         return {
-            name: 'By Eleven',
             answer: answer.toString(),
-            questions: num + ' * 11',
-            strategy:'do a fibo sequance, n + (n+1)'
+            questions: num + ' * 11'
         };
     }
 
@@ -96,40 +90,32 @@ $scope.refreshProblem = function (){
             return +number.toString().replace(/\d$/, '5');
         }
         return {
-            name: 'Ends in Five',
             answer: answer.toString(),
-            questions: num + ' * ' + otherNum,
-            strategy: 'idk'
-        };
+            questions: num + ' * ' + otherNum
+            };
     }
 
-    function fractionMul() {
+    function fraction() {
         var randomFrac = randomFraction();
         return {
-            name: 'fraction',
             answer: randomFrac.answer.toString(),
-            questions: randomFrac.questions,
-            strategy: 'ask in person'
-        };
+            questions: randomFrac.questions
+             };
     }
 
     function square() {
         var num = randomNum(30, 10);
         return {
-            name: 'Squares',
             answer: Math.pow(num, 2).toString(),
-            questions: num + ' ^  2',
-            strategy: 'LEARN YOUR SQUARES'
+            questions: num + ' ^  2'
         };
     }
 
     function cube() {
             var num = randomNum(20, 3);
             return {
-                name: 'Cubes',
                 answer: Math.pow(num, 3).toString(),
-                questions: num + ' ^ 3',
-                strategy: 'see squares' 
+                questions: num + ' ^ 3'
             };
         }
         //////////////////////////////////  used for Division problems
@@ -138,10 +124,8 @@ $scope.refreshProblem = function (){
         var otherNum = randomNum(30, 5);
         var temp = num * otherNum; // insures whole number answer
         return {
-            name: 'Division',
             answer: num.toString(),
-            questions: temp + '/' + otherNum,
-            strategy:'pass 3rd grade'
+            questions: temp + '/' + otherNum
         };
     }
 
@@ -150,10 +134,8 @@ $scope.refreshProblem = function (){
             var otherNum = randomNum(15, 3)
             var answer = num % otherNum;
             return {
-                name: 'Remainder',
                 answer: answer.toString(),
-                questions: num + '/' + otherNum + ' remainder',
-                strategy:'to lazy at the moment'
+                questions: num + '/' + otherNum + ' remainder'
             };
         }
         //////////////////////////// used for Addition problems
@@ -162,10 +144,8 @@ $scope.refreshProblem = function (){
         var otherNum = randomNum(10000, 100);
         var answer = num + otherNum;
         return {
-            name: 'Addition',
             answer: answer.toString(),
-            questions: num + ' + ' + otherNum,
-            strategy:'pass first grade'
+            questions: num + ' + ' + otherNum
         };
     }
 
@@ -174,10 +154,8 @@ $scope.refreshProblem = function (){
         var otherNum = decimalNum();
         var answer = num + otherNum
         return {
-            name: 'Decimal',
             answer: answer.toFixed(2),
-            questions: num.toFixed(2) + ' + ' + otherNum.toFixed(2),
-            strategy:'move decimal place, if it helps'
+            questions: num.toFixed(2) + ' + ' + otherNum.toFixed(2)
         };
     }
         ////////////////////////////////////////// used for Subtraction problems
@@ -186,10 +164,8 @@ $scope.refreshProblem = function (){
         var otherNum = randomNum(10000, 100);
         var answer = num - otherNum;
         return {
-            name: 'Subtraction',
             answer: answer.toString(),
-            questions: num + ' - ' + otherNum,
-             strategy:'pass first grade'
+            questions: num + ' - ' + otherNum
         };
     }
 
@@ -198,10 +174,8 @@ $scope.refreshProblem = function (){
         var otherNum = decimalNum();
         var answer = num - otherNum;
         return {
-            name: 'Decimal',
             answer: answer.toFixed(2),
-            questions: num.toFixed(2) + ' - ' + otherNum.toFixed(2),
-            strategy: 'see adding decimals, to tired at the moment'
+            questions: num.toFixed(2) + ' - ' + otherNum.toFixed(2)
         };
     }
 
@@ -259,10 +233,7 @@ $scope.refreshProblem = function (){
         var num = Math.floor((Math.random() * (max - min)) + min);
         return num;
     }
-/////////////////////////////////////////////////////////// need help button
-$scope.needHelp = function(){
-    $scope.strategy = problemType.strategy;
     
-}
-
-}
+    
+    
+};
