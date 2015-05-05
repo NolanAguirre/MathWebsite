@@ -184,8 +184,11 @@ function MathController() {
 
     /////////////////////////////////////////////////////////////////////// things get weird 
     function randomFraction() { // really odd, but it has to return a very very very specific type of fraction 
-        var wholeNum = randomNum(30, 5);
-        var denominator = randomNum(wholeNum + 3, wholeNum - 3);
+        var wholeNum = randomNum(30, 6);
+        var denominator = randomNum(wholeNum + 5, wholeNum - 5);
+        if (wholeNum === denominator){
+            denominator = denominator - randomNum(5, 2);
+        }
         var question = wholeNum + ' * ' + wholeNum + '/' +
             denominator;
         var answer;
