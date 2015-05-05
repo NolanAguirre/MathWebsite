@@ -181,7 +181,8 @@ function MathController() {
             questions: num.toFixed(2) + ' - ' + otherNum.toFixed(2)
         };
     }
-
+// solution is correcnt answer
+// change name property
     /////////////////////////////////////////////////////////////////////// things get weird 
     function randomFraction() { // really odd, but it has to return a very very very specific type of fraction 
         var wholeNum = randomNum(30, 6);
