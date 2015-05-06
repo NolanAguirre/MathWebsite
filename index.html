@@ -21,13 +21,15 @@
             <div class="problemTypePanel col-sm-1 rmp">
                 <div ng-repeat="problemType in vm.problemTypes">
 
-                    <div class="categories col-sm-12" ng-click="vm.currentProblem = problemType.mainType.generate()">
+                    <div class="categories col-sm-12" ng-click="vm.currentProblem = problemType.mainType.generate(); vm.storeProblem = problemType.mainType;
+                    vm.disabled = false">
                         {{ problemType.mainType.name }}
                     </div>
                     <div class="subCategories">
                         <div ng-repeat="subType in problemType.subTypes">
 
-                            <div class=" subCategory col-sm-12" ng-click="vm.currentProblem = subType.generate()">
+                            <div class=" subCategory col-sm-12" ng-click="vm.currentProblem = subType.generate(); vm.storeProblem = subType;
+                            vm.disabled = false">
                                 {{ subType.name }}
                             </div>
                         </div>
@@ -52,6 +54,7 @@
 
                     <div class="col-sm-4">
                         <button class="btn btn-info btn-lg" ng-click="vm.submitAnswer()">Submit Answer</button>
+                        <button class="btn btn-info btn-lg" ng-disabled="vm.disabled" ng-click=" vm.currentProblem = vm.storeProblem.generate()">New Problem</button>
                     </div>
                 </div>
             </div>

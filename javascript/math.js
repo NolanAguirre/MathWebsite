@@ -1,6 +1,12 @@
 angular.module('mathApp', [])
     .controller('math', MathController);
-
+/* To-Do
+ *  Add help button    
+ *  Add Sequential   
+ *  Fix check answer  
+ *  Swap order submit 
+ *  
+ */
 function MathController() {
     var vm = this;
     vm.problemTypes = [{
@@ -55,12 +61,13 @@ function MathController() {
 
     ];
     vm.currentProblem = addition();
+    vm.disabled = true;
 
     vm.submitAnswer = submitAnswer;
 
     function submitAnswer() {
         if (vm.currentProblem.answer === vm.userAnswer) {
-            vm.submitedAnswer = 'correct';
+            vm.submitedAnswer = 'Delightful, You\'ve got it correct';
         } else {
             vm.submitedAnswer = 'Incorrect! Correct answer is ' + vm.currentProblem.answer;
         }
