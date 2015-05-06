@@ -12,59 +12,83 @@ function MathController() {
     vm.problemTypes = [{
             mainType: {
                 name: 'Addition',
-                generate: addition
+                generate: addition,
+                strategy: none,
+                strategyExample: noExample
             },
             subTypes: [{
                 name: 'Decimal',
-                generate: decimalAdd
+                generate: decimalAdd,
+                strategy: none,
+                strategyExample: noExample
             }]
         }, {
             mainType: {
                 name: 'Subtraction',
-                generate: subtraction
+                generate: subtraction,
+                strategy: none,
+                strategyExample: noExample
             },
             subTypes: [{
                 name: 'Decimal',
-                generate: decimalSub
+                generate: decimalSub,
+                strategy: none,
+                strategyExample: noExample
             }]
         }, {
             mainType: {
                 name: 'Division',
-                generate: division
+                generate: division,
+                strategy: divisions,
+                strategyExample: noExample
             },
             subTypes: [{
                 name: 'Remainder',
-                generate: remainder
+                generate: remainder,
+                strategy: remainders,
+                strategyExample: noExample
             }]
         }, {
             mainType: {
                 name: 'Multiplication',
-                generate: multiplication
+                generate: multiplication,
+                strategy: multiplications,
+                strategyExample: noExample
             },
             subTypes: [{
                 name: 'Ends in fives',
-                generate: endsInFive
+                generate: endsInFive,
+                strategy:endsInFives,
+                strategyExample: noExample
             }, {
                 name: 'Elevens',
-                generate: eleven
+                generate: eleven,
+                strategy:elevens,
+                strategyExample: noExample
             }, {
                 name: 'Fractions',
-                generate: fraction
+                generate: fraction,
+                strategy: fractions,
+                strategyExample: noExample
             }, {
                 name: 'Square',
-                generate: square
+                generate: square,
+                strategy: squares,
+                strategyExample: exampleSquare
             }, {
                 name: 'Cube',
-                generate: cube
+                generate: cube,
+                strategy: cubes,
+                strategyExample: exampleCube
             }]
         }
 
     ];
     vm.currentProblem = addition();
-    vm.disabled = true;
+    vm.disable = true;
 
     vm.submitAnswer = submitAnswer;
-
+    vm.showHelp = false;
     function submitAnswer() {
         if (vm.currentProblem.answer === vm.userAnswer) {
             vm.submitedAnswer = 'Delightful, You\'ve got it correct';
@@ -247,7 +271,6 @@ function MathController() {
         var num = Math.floor((Math.random() * (max - min)) + min);
         return num;
     }
-
 
 
 };

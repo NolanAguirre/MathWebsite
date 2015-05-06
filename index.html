@@ -22,14 +22,14 @@
                 <div ng-repeat="problemType in vm.problemTypes">
 
                     <div class="categories col-sm-12" ng-click="vm.currentProblem = problemType.mainType.generate(); vm.storeProblem = problemType.mainType;
-                    vm.disabled = false">
+                    vm.disable = false">
                         {{ problemType.mainType.name }}
                     </div>
                     <div class="subCategories">
                         <div ng-repeat="subType in problemType.subTypes">
 
                             <div class=" subCategory col-sm-12" ng-click="vm.currentProblem = subType.generate(); vm.storeProblem = subType;
-                            vm.disabled = false">
+                            vm.disable = false">
                                 {{ subType.name }}
                             </div>
                         </div>
@@ -38,10 +38,32 @@
             </div>
 
             <div class=" mainbody col-sm-11 rmp">
-                <div class="col-sm-12 numberDisplay">
+                <div ng-show="vm.showHelp" class="helpDisplay col-md-12">
+                        <div class="row helpHeader">
+                            <div class="col-sm-11">
+                                <h3 style="text-align:center">Known strategies are listed below</h3> 
+                            </div>   
+                            <div ng-click="vm.showHelp = false"class="exitPicture col-sm-1">
+                                <h4>exit</h4>
+                            </div>
+                                                 
+                        </div>
+                        <div class="row">
+                            <div class="strategyDisplay col-sm-10">
+                            <pre>{{vm.storeProblem.strategy}}</pre>
+                            </div>
+                            <div class="col-sm-2">
+                                <pre>{{vm.storeProblem.strategyExample}}</pre>
+                            </div>
+                        </div>
+                        
+                </div>
+                <div ng-hide="vm.showHelp"class="col-sm-12 numberDisplay">
                     <h1 class="problemDisplay">{{vm.currentProblem.questions}}</h1>
                 </div>
-                <div class="col-sm-12 submitAndCheck ">
+              
+
+              <div class="col-sm-12 submitAndCheck ">
                     <div class="answerDisplay col-md-4">
                         <div>
                             <h3>{{vm.submitedAnswer}}</h3>
@@ -53,17 +75,24 @@
                     </div>
 
                     <div class="col-sm-4">
-                        <button class="btn btn-info btn-lg" ng-click="vm.submitAnswer()">Submit Answer</button>
-                        <button class="btn btn-info btn-lg" ng-disabled="vm.disabled" ng-click=" vm.currentProblem = vm.storeProblem.generate()">New Problem</button>
+                        <div class="col-sm-12">
+                            <button class="btn btn-info btn-lg submit" ng-click="vm.submitAnswer()">Submit Answer</button>
+                            <button class="btn btn-info btn-lg newProb" ng-disabled="vm.disable" ng-click=" vm.currentProblem = vm.storeProblem.generate()">New Problem</button>
+                        </div>
+                        <div class="col-sm-12 help">
+                            <button class="helpButton btn btn-info btn-lg" ng-disabled="vm.disable" ng-click="vm.showHelp = true">Need help?</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+   
     <script src="javascript/angular.min.js"></script>
     <script src="javascript/math.js"></script>
+    <script src="javascript/formatedStrategies.js"/>
     <script src="javascript/jquery-2.1.3.min.js"></script>
+    
 </body>
 
 </html>

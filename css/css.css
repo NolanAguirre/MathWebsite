@@ -59,3 +59,43 @@ border-radius: 60px;
 .strategy{
 font-size: 30px;
 }
+.help{
+float: bottom;
+}
+.helpButton{
+width:100%;
+height:60%
+}
+.newProb{
+float:right;
+width:50%;
+height:40%
+}
+.submit{
+width:50%;
+height:40%
+}
+.helpDisplay{
+height:85%
+}
+.helpHeader{
+background-color:#FFBF00;
+height:10%;
+}
+.exitPicture{
+float: right;
+background-color:#F2F2F2;
+width:5%;
+text-align:center;
+}
+.exitPicture:hover{
+background-color:#A4A4A4;
+}
+pre{
+background-color:white;
+border:0;
+padding:0;
+}
+.strategyDisplay{
+height:90%;
+}
