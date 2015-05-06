@@ -1,11 +1,9 @@
 angular.module('mathApp', [])
     .controller('math', MathController);
 /* To-Do
- *  Add help button    
+ *  Add helpful strategy  
  *  Add Sequential   
- *  Fix check answer  
- *  Swap order submit 
- *  
+ *  Fix check answer    
  */
 function MathController() {
     var vm = this;

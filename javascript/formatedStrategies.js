@@ -57,13 +57,20 @@ var elevens ='add the nth digit to the nth+1 digit 2324*11 \n' +
     'Thats it! 2324*11 = 25564'
 var none = 'Sorry, No there is no strategy, just practice!';
 var noExample = 'No Examples, Sorry!'   
-var multiplications = 'um, i dont know'
-var divisions = 'idk'
+var multiplications = 'Unknown, to be added later'
+var divisions = 'Unknown, to be added later'
 var cubes='Memorize your cubes!'
 var squares='Memorize your squares!'
-var fractions='um hard stuff'
-var remainders='UMMMMMMMMMMM'
-var endsInFives='UMMMMMMMMMMMMMMMMMM'
+var fractions='Find next number in series\n' +
+'16 * 16/19, since 16 is less than 19, the series is decreasing\n' +
+'x, 16, 19. x is 13. \n' +
+'x is your whole number in the answer, with one exeption\n' +
+'now the numirator is the difference between each element, squared n' +
+'13 - 16 = -3, -3^2 = 9\n' + 
+'13 9/19, simplify if possible\n' +
+'if the numirator is larger then then denominator increasse the whole number (simplify)'
+var remainders='Unknown, to be added'
+var endsInFives='Unknown, to be added'
 var none='Sorry, No there is no strategy, just practice!'
 
 var noExample='None'
