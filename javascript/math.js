@@ -1,12 +1,9 @@
 angular.module('mathApp', [])
     .controller('math', MathController);
-/* To-Do
- *  Add helpful strategy  
- *  Add Sequential   
- *  Fix check answer    
- */
+
 function MathController() {
     var vm = this;
+   
     vm.problemTypes = [{
             mainType: {
                 name: 'Addition',
@@ -79,19 +76,31 @@ function MathController() {
                 strategy: cubes,
                 strategyExample: exampleCube
             }]
+        },{
+            mainType:{
+                name: 'Sequantails',
+                generate: sequancee,
+                strategy: none,
+                strategyExample: noExample
+            }
         }
-
     ];
     vm.currentProblem = addition();
-    vm.disable = true;
-
+    
+    vm.newProblemClick = newProblemClick;
     vm.submitAnswer = submitAnswer;
     vm.showHelp = false;
+    vm.disableButtons = true;
+    function newProblemClick(){
+        vm.currentProblem = vm.storeProblem.generate(); 
+        vm.displayAnswer = '';
+        vm.showHelp = false;
+    }
     function submitAnswer() {
         if (vm.currentProblem.answer === vm.userAnswer) {
-            vm.submitedAnswer = 'Delightful, You\'ve got it correct';
+            vm.displayAnswer = 'Delightful, You\'ve got it correct';
         } else {
-            vm.submitedAnswer = 'Incorrect! Correct answer is ' + vm.currentProblem.answer;
+            vm.displayAnswer = 'Incorrect! Correct answer is ' + vm.currentProblem.answer;
         }
     }
 
@@ -258,6 +267,24 @@ function MathController() {
             questions: question,
         };
     }
+    
+    
+    function sequancee(){
+    var num = randomNum(20,5);
+    var otherNum = randomNum(6,2);
+    var answer = 0;
+    var sequance = [];
+    var temp = 0;
+    for(var foo = 0; foo < num; foo++){
+        temp = otherNum + temp;
+        sequance.push(temp);
+        answer = answer + temp
+    }
+    return{
+        answer: answer.toString(),
+        questions: sequance[0] + ', ' + sequance[1] + '... ' + sequance[num - 1]
+    };
+}
 
     /////////////////////////////////////////////////////////// gets random numbers
     function decimalNum() {
@@ -270,5 +297,5 @@ function MathController() {
         return num;
     }
 
+}
 
-};

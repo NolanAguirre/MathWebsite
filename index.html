@@ -22,14 +22,13 @@
                 <div ng-repeat="problemType in vm.problemTypes">
 
                     <div class="categories col-sm-12" ng-click="vm.currentProblem = problemType.mainType.generate(); vm.storeProblem = problemType.mainType;
-                    vm.disable = false">
+                    vm.disableButtons = false">
                         {{ problemType.mainType.name }}
                     </div>
                     <div class="subCategories">
                         <div ng-repeat="subType in problemType.subTypes">
-
                             <div class=" subCategory col-sm-12" ng-click="vm.currentProblem = subType.generate(); vm.storeProblem = subType;
-                            vm.disable = false">
+                            vm.disableButtons = false">
                                 {{ subType.name }}
                             </div>
                         </div>
@@ -44,7 +43,7 @@
                                 <h3 style="text-align:center">Known strategies are listed below</h3> 
                             </div>   
                             <div ng-click="vm.showHelp = false"class="exitPicture col-sm-1">
-                                <h4>exit</h4>
+                                <h5>exit to problem</h5>
                             </div>
                                                  
                         </div>
@@ -66,7 +65,7 @@
               <div class="col-sm-12 submitAndCheck ">
                     <div class="answerDisplay col-md-4">
                         <div>
-                            <h3>{{vm.submitedAnswer}}</h3>
+                            <h3>{{vm.displayAnswer}}</h3>
                         </div>
                     </div>
 
@@ -77,10 +76,10 @@
                     <div class="col-sm-4">
                         <div class="col-sm-12">
                             <button class="btn btn-info btn-lg submit" ng-click="vm.submitAnswer()">Submit Answer</button>
-                            <button class="btn btn-info btn-lg newProb" ng-disabled="vm.disable" ng-click=" vm.currentProblem = vm.storeProblem.generate()">New Problem</button>
+                            <button class="btn btn-info btn-lg newProb" ng-disabled="vm.disableButtons" ng-click=" vm.newProblemClick()">New Problem</button>
                         </div>
                         <div class="col-sm-12 help">
-                            <button class="helpButton btn btn-info btn-lg" ng-disabled="vm.disable" ng-click="vm.showHelp = true">Need help?</button>
+                            <button class="helpButton btn btn-info btn-lg" ng-disabled="vm.disableButtons" ng-click="vm.showHelp = true">Need help?</button>
                         </div>
                     </div>
                 </div>
