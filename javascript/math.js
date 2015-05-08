@@ -84,7 +84,7 @@ function MathController() {
         mainType: {
             name: 'Sequentials',
             generate: sequence,
-            strategy: none,
+            strategy: sequences,
             strategyExample: noExample
         }
     }];

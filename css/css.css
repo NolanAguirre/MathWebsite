@@ -1,3 +1,12 @@
+.rmp{
+padding:0px;
+padding-left:0px;
+padding-right:0px
+}
+.rmm{
+margin-left:0px;
+margin-right:0px;
+}
 .header{
 height: 10%;
  background: linear-gradient(#8181F7, #08088A);
@@ -14,7 +23,7 @@ border-right: 3px solid;
 background-color:white;
 height:10%;
 text-align:center;
-margin-left: 10px;
+padding-left: 10px;
 box-shadow: 10px 0 5px -2px #888;
 border-bottom: 5px solid;
 line-height: 50px;
@@ -23,9 +32,7 @@ line-height: 50px;
 height:10%;
 border-bottom: 5px solid;
 }
-.rmp{
-padding:0px;
-}
+
 .mainbody{
 height:90%;
 }
@@ -76,16 +83,18 @@ width:50%;
 height:40%
 }
 .helpDisplay{
-height:85%
+height:85%;
+
 }
 .helpHeader{
 background-color:#FFBF00;
 height:10%;
+float:left;
 }
 .exitPicture{
 float: right;
 background-color:#F2F2F2;
-width:5%;
+width:10%;
 text-align:center;
 height:100%;
 }
@@ -99,4 +108,10 @@ padding:0;
 }
 .strategyDisplay{
 height:90%;
+float:top;
+}
+.strExample{
+float:right;
+border-left: 3px solid;
+height:100%;
 }

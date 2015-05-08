@@ -9,15 +9,15 @@
     <title> Math Practice</title>
 </head>
 
-<body ng-controller="math as vm">
-    <div class="fluid-container">
-        <div class="row">
+<body class = "fluid-container" ng-controller="math as vm">
+    <div>
+        <div class="rmm row">
             <div class="col-sm-12 header">
                 <h1 class="headerText">Welcome to the Number Sense practice website</h1>
             </div>
         </div>
 
-        <div class="row">
+        <div class="rmm row">
             <div class="problemTypePanel col-sm-1 rmp">
                 <div ng-repeat="problemType in vm.problemTypes">
 
@@ -37,26 +37,29 @@
             </div>
 
             <div class=" mainbody col-sm-11 rmp">
-                <div ng-show="vm.showHelp" class="helpDisplay col-md-12">
-                        <div class="row helpHeader">
-                            <div class="col-sm-11">
+                <div ng-show="vm.showHelp" class=" rmp helpDisplay">
+                       
+                            <div class=" strExample col-sm-2">
+                                <pre>{{vm.storeProblem.strategyExample}}</pre>
+                            </div>                       <div class="col-sm-10 rmp helpHeader">
+                            <div class=" rmp col-sm-10">
                                 <h3 style="text-align:center">Known strategies are listed below</h3> 
-                            </div>   
-                            <div ng-click="vm.showHelp = false"class="exitPicture col-sm-1">
+                             </div>
+                            <div ng-click="vm.showHelp = false"class="rmp exitPicture col-sm-2">
                                 <h5>exit to problem</h5>
                             </div>
-                                                 
-                        </div>
-                        <div class="row">
-                            <div class="strategyDisplay col-sm-10">
+                            </div>
+                                          <div class="strategyDisplay col-sm-10 rmp">
                             <pre>{{vm.storeProblem.strategy}}</pre>
-                            </div>
-                            <div class="col-sm-2">
-                                <pre>{{vm.storeProblem.strategyExample}}</pre>
-                            </div>
-                        </div>
+                            </div>       
                         
-                </div>
+                        
+                       </div>
+                            
+                            
+                      
+                        
+               
                 <div ng-hide="vm.showHelp"class="col-sm-12 numberDisplay">
                     <h1 class="problemDisplay">{{vm.currentProblem.questions}}</h1>
                 </div>

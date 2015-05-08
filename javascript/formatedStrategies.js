@@ -74,3 +74,4 @@ var endsInFives='Unknown, to be added'
 var none='Sorry, No there is no strategy, just practice!'
 
 var noExample='None'
+var sequences = 'To be added'
