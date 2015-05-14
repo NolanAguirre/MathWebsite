@@ -74,4 +74,9 @@ var endsInFives='Unknown, to be added'
 var none='Sorry, No there is no strategy, just practice!'
 
 var noExample='None'
-var sequences = 'To be added'
+var sequences = 'First term - last term 2, 4... 10, 8\n' +
+'the difference (8), divided by the differnce between the second and first term\n' + 
+'4 - 2 = 2, 8/2 = 4, add one to the number, 4 + 1 = 5\n' +
+'amount of terms have been found, now average the number\n' + 
+'first number plus the last, divided by 2, times the aboout of terms\n' +
+'1 + 10 = 12/2 = 6, 6 * 5 = 30, the answer is 30!'
