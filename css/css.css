@@ -1,0 +1,28 @@
+.nav-bar{
+    float:left;
+    height:700px;
+    max-width: 200px;
+}
+.main-type{
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    background-color: yellow;
+    width: 100%;
+}
+.main-type:hover ~ .hidden-type{
+    visibility: visible;
+    height:30px;
+}
+
+    .hidden-type{
+    visibility: hidden;
+    line-height: 30px;
+    margin-left: 30px;
+    height:0px;
+    z-index: -1;
+    position: relative;
+    transition-duration: .25s;
+    transition-property: height;
+    transition-timing-function: linear;
+    }

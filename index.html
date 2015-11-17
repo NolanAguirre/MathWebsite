@@ -1,14 +1,38 @@
-<!doctype hmtl>
-<html lang="en" ng-app="mathApp">
+<html ng-app="UILPractice">
+    <head>
+        <link rel="stylesheet" href="css/css.css">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title> Math Practice</title>
+    </head>
 
-<head>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/css.css">
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title> Math Practice</title>
-</head>
+    <body>
+        <div>
+            <h1 style="text-align:center">Welcome to the number sense practice website</h1>
+        </div>
+        <div ng-controller="MathController as vm" class="nav-bar">
+            <div ng-repeat="type in vm.problems">
+                <div class="main-type">
+                    {{type.mainType.name}}
+                </div>
+                <div class="hidden-type" ng-repeat="subType in type.subTypes">
+                    {{subType.name}}
+                </div>
+            </div>
+        </div>
+        <div ng-view></div>
+        <div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
 
-<body>
 
-</body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular-route.min.js"></script>
+        <script src="javascript/main.js"></script>
+        <script src="javascript/router.js"></script>
+        <script src="javascript/math.js"></script>
+    </body>
+
+</html>
