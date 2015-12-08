@@ -1,28 +1,41 @@
+a{
+    color:inherit;
+    text-decoration: none;
+}
+
 .nav-bar{
     float:left;
     height:700px;
-    max-width: 200px;
-}
-.main-type{
-    height: 50px;
-    text-align: center;
-    line-height: 50px;
-    background-color: yellow;
-    width: 100%;
-}
-.main-type:hover ~ .hidden-type{
-    visibility: visible;
-    height:30px;
+    max-width: 150px;
 }
 
+.main-type{
+    height: 150px;
+    font-size: 1.2em;
+}
+.main-type:hover .hidden-type{
+    height: 100%;
+}
     .hidden-type{
-    visibility: hidden;
-    line-height: 30px;
-    margin-left: 30px;
-    height:0px;
-    z-index: -1;
-    position: relative;
-    transition-duration: .25s;
-    transition-property: height;
-    transition-timing-function: linear;
+        height: 0px;
+        overflow: hidden;
+        text-align: right;
+        transition-property: height;
+        transition-duration: .5s;
+        transition-timing-function: linear;
+    }
+.main-body{
+    height: 600px;
+    width: 600px;
+    float:left;
+    background-color: red;
+}
+    .question-display{
+        max-width: 500px;
+        border-radius: 75px;
+        margin: auto;
+        height:100px;
+        background-color: blue;
+        text-align:center;
+        font-size: 4em;
     }

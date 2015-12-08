@@ -6,12 +6,13 @@ Router.$inject = ['$routeProvider'] ;
 function Router( $routeProvider ) {
     $routeProvider
         .when( '/', {
-            controller: 'MathController as vm',
+            controller: 'NavBarController as vm',
             templateUrl: 'templates/problemDisplay.html'
         } )
-        .when('/none', {templateUrl: 'templates/none.html'})
-        //.when('/about-us', {templateUrl: 'templates/about-us.html'})
-        //.when('/contact-us', { templateUrl: 'templates/contact-us.html'})
+        .when('/addition', {templateUrl: 'templates/addition/addition.html'})
+        .when('/subtraction', {templateUrl: 'templates/subtraction/subtraction.html'})
+        .when('/multiplication', { templateUrl: 'templates/multiplication/multiplication.html'})
+        .when('/division', {templateUrl: 'templates/division/division.html'})
         .otherwise( {
             redirectTo: '/'
         } );

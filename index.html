@@ -10,29 +10,32 @@
         <div>
             <h1 style="text-align:center">Welcome to the number sense practice website</h1>
         </div>
-        <div ng-controller="MathController as vm" class="nav-bar">
-            <div ng-repeat="type in vm.problems">
-                <div class="main-type">
-                    {{type.mainType.name}}
-                </div>
-                <div class="hidden-type" ng-repeat="subType in type.subTypes">
-                    {{subType.name}}
+        <div ng-controller="NavBarController as vm" class="nav-bar">
+            <div class="main-type" ng-repeat="type in vm.service.problems">
+                <span ng-click="vm.service.currentProblem = type.mainType.generate()">{{type.mainType.name}}</span>
+                <div class="hidden-type">
+                    <div ng-repeat="subType in type.subTypes" ng-click="vm.service.currentProblem = subType.generate()">{{subType.name}}<br></div>
                 </div>
             </div>
         </div>
-        <div ng-view></div>
-        <div>
-            <div></div>
-            <div></div>
-            <div></div>
+        <div class="main-body" ng-view></div>
+        <div class="footer">
+            <div>
+
+            </div>
+            <div ng-controller="HelpController">
+                <a ng-href="{{service.currentProblem.link}}">click me</a>
+                <button></button>
+            </div>
         </div>
-
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular-route.min.js"></script>
         <script src="javascript/main.js"></script>
         <script src="javascript/router.js"></script>
-        <script src="javascript/math.js"></script>
+        <script src="javascript/Controllers/navBar.js"></script>
+        <script src="javascript/Controllers/display.js"></script>
+        <script src="javascript/Controllers/help.js"></script>
+        <script src="javascript/Services/service.js"></script>
     </body>
 
 </html>
