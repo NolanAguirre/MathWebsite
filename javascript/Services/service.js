@@ -8,7 +8,7 @@ angular.module("UILPractice")
             mainType: {
                 name: 'Addition',
                 generate: addition,
-                link:"#/addition"
+                link:"#/no_help"
             },
             subTypes: [ {
                 name: 'Decimal',
@@ -23,7 +23,7 @@ angular.module("UILPractice")
             mainType: {
                 name: 'Subtraction',
                 generate: subtraction,
-                link:"#/subtraction"
+                link:"#/no_help"
             },
             subTypes: [ {
                 name: 'Decimal',
@@ -45,7 +45,7 @@ angular.module("UILPractice")
             mainType: {
                 name: 'Multiplication',
                 generate: multiplication,
-                link:"#/multiplication"
+                link:"#/no_help"
             },
             subTypes: [ {
                 name: 'Ends in Five',
@@ -70,10 +70,10 @@ angular.module("UILPractice")
             } ]
         } ];
         function multiplication() {
-            var num = randomNum( 500, 100 );
-            var otherNum = randomNum( 500, 10 );
+            var num = randomNum( 500, 30 );
+            var otherNum = randomNum( 100, 4 );
+            service.answer = num * otherNum
             return {
-                answer: num * otherNum,
                 question: num + ' * ' + otherNum
             };
         }
@@ -81,8 +81,8 @@ angular.module("UILPractice")
         function eleven() {
             var num = randomNum( 100000, 1000 );
             var answer = num * 11
+            service.answer = answer.toString()
             return {
-                answer: answer.toString(),
                 question: num + ' * 11'
             };
         }
@@ -96,34 +96,32 @@ angular.module("UILPractice")
                 return +number.toString()
                     .replace( /\d$/, '5' );
             }
+            service.answer = answer.toString()
             return {
-                answer: answer.toString(),
                 question: num + ' * ' + otherNum
             };
         }
 
         function fraction() {
             var randomFrac = randomFraction();
+            service.answer = randomFrac.answer.toString()
             return {
-                answer: randomFrac.answer.toString(),
-                question: randomFrac.questions
+                question: randomFrac.question
             };
         }
 
         function square() {
             var num = randomNum( 30, 10 );
+            service.answer = Math.pow( num, 2 ).toString();
             return {
-                answer: Math.pow( num, 2 )
-                    .toString(),
                 question: num + ' ^  2'
             };
         }
 
         function cube() {
             var num = randomNum( 20, 3 );
+            service.answer = Math.pow( num, 3 ).toString();
             return {
-                answer: Math.pow( num, 3 )
-                    .toString(),
                 question: num + ' ^ 3'
             };
         }
@@ -132,8 +130,8 @@ angular.module("UILPractice")
             var num = randomNum( 50, 5 );
             var otherNum = randomNum( 30, 5 );
             var temp = num * otherNum;
+            service.answer = num.toString();
             return {
-                answer: num.toString(),
                 question: temp + '/' + otherNum
             };
         }
@@ -142,18 +140,18 @@ angular.module("UILPractice")
             var num = randomNum( 3000, 100 );
             var otherNum = randomNum( 15, 3 )
             var answer = num % otherNum;
+            service.answer = answer.toString();
             return {
-                answer: answer.toString(),
-                question: num + '/' + otherNum + ' remainder'
+                question: num + '/' + otherNum
             };
         }
 
         function addition() {
-            var num = randomNum( 10000, 100 );
-            var otherNum = randomNum( 10000, 100 );
+            var num = randomNum( 5000, 100 );
+            var otherNum = randomNum( 5000, 100 );
             var answer = num + otherNum;
+            service.answer = answer.toString();
             return {
-                answer: answer.toString(),
                 question: num + ' + ' + otherNum
             };
         }
@@ -162,8 +160,8 @@ angular.module("UILPractice")
             var num = decimalNum();
             var otherNum = decimalNum();
             var answer = num + otherNum
+            service.answer = answer.toFixed( 2 );
             return {
-                answer: answer.toFixed( 2 ),
                 question: num.toFixed( 2 ) + ' + ' + otherNum.toFixed( 2 )
             };
         }
@@ -172,8 +170,8 @@ angular.module("UILPractice")
             var num = randomNum( 10000, 100 );
             var otherNum = randomNum( 10000, 100 );
             var answer = num - otherNum;
+            service.answer = answer.toString();
             return {
-                answer: answer.toString(),
                 question: num + ' - ' + otherNum
             };
         }
@@ -182,8 +180,8 @@ angular.module("UILPractice")
             var num = decimalNum();
             var otherNum = decimalNum();
             var answer = num - otherNum;
+            service.answer = answer.toFixed( 2 );
             return {
-                answer: answer.toFixed( 2 ),
                 question: num.toFixed( 2 ) + ' - ' + otherNum.toFixed( 2 )
             };
         }
@@ -199,8 +197,8 @@ angular.module("UILPractice")
                 seq.push( temp );
                 answer = answer + temp
             }
+            service.answer = answer.toString();
             return {
-                answer: answer.toString(),
                 question: seq[ 0 ] + ', ' + seq[ 1 ] + '... ' + seq[ num - 1 ]
             };
         }
@@ -252,8 +250,12 @@ angular.module("UILPractice")
                         }
                     }
                 }
-                answer = wholeNum + ' ' + numirator + '/' +
+                if(numirator == 0){
+                    answer = wholeNum
+                }else{
+                    answer = wholeNum + ' ' + numirator + '/' +
                     denominator;
+                }
             }
             answer();
 

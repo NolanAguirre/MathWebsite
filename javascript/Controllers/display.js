@@ -4,5 +4,5 @@ angular.module('UILPractice')
     DisplayController.$inject = ["service"];
     function DisplayController(service){
         var vm = this
-        vm.service = service
+        vm.service = service;
     }

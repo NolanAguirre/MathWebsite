@@ -1,3 +1,4 @@
 <div clas="problem-display" ng-controller="DisplayController as vm">
-    <div class="question-display">{{vm.service.currentProblem.question}}</div>
+    <div ng class="question-display">{{vm.service.currentProblem.generate().question}}</div>
+    {{vm.service.answer}}
 </div>

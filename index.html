@@ -12,9 +12,16 @@
         </div>
         <div ng-controller="NavBarController as vm" class="nav-bar">
             <div class="main-type" ng-repeat="type in vm.service.problems">
-                <span ng-click="vm.service.currentProblem = type.mainType.generate()">{{type.mainType.name}}</span>
+                <a ng-href="#/"
+                   ng-click="vm.service.currentProblem = type.mainType">
+                        {{type.mainType.name}}
+                </a>
                 <div class="hidden-type">
-                    <div ng-repeat="subType in type.subTypes" ng-click="vm.service.currentProblem = subType.generate()">{{subType.name}}<br></div>
+                    <a ng-href="#/"
+                       ng-repeat="subType in type.subTypes"
+                       ng-click="vm.service.currentProblem = subType">
+                            {{subType.name}}<br>
+                    </a>
                 </div>
             </div>
         </div>
@@ -23,9 +30,15 @@
             <div>
 
             </div>
-            <div ng-controller="HelpController">
-                <a ng-href="{{service.currentProblem.link}}">click me</a>
-                <button></button>
+            <div ng-controller="HelpController as vm">
+                <div>
+                    <input ng-model="vm.userAnswer" type="text" placeholder="Answer here!"></input>
+                </div>
+                <div>
+                    <a class="psudo-button" onClick="vm.submitAnswer">Solve!</a>
+                    <a class="psudo-button" ng-click>New Problem!</a>
+                    <a class="psudo-button" ng-href="{{vm.service.currentProblem.link}}">click me for help</a>
+                </div>
             </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.min.js"></script>
