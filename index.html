@@ -32,10 +32,10 @@
             </div>
             <div ng-controller="HelpController as vm">
                 <div>
-                    <input ng-model="vm.userAnswer" type="text" placeholder="Answer here!"></input>
+                    <input type="text" placeholder="Answer here!"></input>
                 </div>
                 <div>
-                    <a class="psudo-button" onClick="vm.submitAnswer">Solve!</a>
+                    <button class="psudo-button" ng-click="vm.submitAnswer()">Solve!</button>
                     <a class="psudo-button" ng-click>New Problem!</a>
                     <a class="psudo-button" ng-href="{{vm.service.currentProblem.link}}">click me for help</a>
                 </div>
