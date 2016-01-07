@@ -13,13 +13,13 @@
         <div ng-controller="NavBarController as vm" class="nav-bar">
             <div class="main-type" ng-repeat="type in vm.service.problems">
                 <a ng-href="#/"
-                   ng-click="vm.service.currentProblem = type.mainType">
+                   ng-click="vm.service.currentProblem = type.mainType; vm.service.currentProblem.generate();">
                         {{type.mainType.name}}
                 </a>
                 <div class="hidden-type">
                     <a ng-href="#/"
                        ng-repeat="subType in type.subTypes"
-                       ng-click="vm.service.currentProblem = subType">
+                       ng-click="vm.service.currentProblem = subType; vm.service.currentProblem.generate();">
                             {{subType.name}}<br>
                     </a>
                 </div>
@@ -36,7 +36,7 @@
                 </div>
                 <div>
                     <button class="psudo-button" ng-click="vm.submitAnswer()">Solve!</button>
-                    <a class="psudo-button" ng-click>New Problem!</a>
+                    <a class="psudo-button" ng-click="vm.service.currentProblem.generate()">New Problem!</a>
                     <a class="psudo-button" ng-href="{{vm.service.currentProblem.link}}">click me for help</a>
                 </div>
             </div>

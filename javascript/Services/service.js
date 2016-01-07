@@ -1,9 +1,9 @@
-angular.module("UILPractice")
-    .service("service", service);
-    service.$inject = ["$routeParams"];
-    function service($routeParams){
+angular.module("UILPractice")                   // Questions are displayed to the user
+    .service("service", service);               // Problems are for the code portion
+    service.$inject = ["$routeParams"];         // The addition function is a problem
+    function service($routeParams){             // It generates a question
         var service = this;
-        service.currentProblem = "No problem yet"
+        service.question = "No problem yet"
         service.problems = [ {
             mainType: {
                 name: 'Addition',
@@ -72,19 +72,15 @@ angular.module("UILPractice")
         function multiplication() {
             var num = randomNum( 500, 30 );
             var otherNum = randomNum( 100, 4 );
-            service.answer = num * otherNum
-            return {
-                question: num + ' * ' + otherNum
-            };
+            service.answer = num * otherNum;
+            service.question = num + ' * ' + otherNum;
         }
 
         function eleven() {
             var num = randomNum( 100000, 1000 );
             var answer = num * 11
-            service.answer = answer.toString()
-            return {
-                question: num + ' * 11'
-            };
+            service.answer = answer.toString();
+            service.question = num + ' * 11';
         }
 
         function endsInFive() {
@@ -97,33 +93,25 @@ angular.module("UILPractice")
                     .replace( /\d$/, '5' );
             }
             service.answer = answer.toString()
-            return {
-                question: num + ' * ' + otherNum
-            };
+            service.question = num + ' * ' + otherNum
         }
 
         function fraction() {
             var randomFrac = randomFraction();
             service.answer = randomFrac.answer.toString()
-            return {
-                question: randomFrac.question
-            };
+            service.question = randomFrac.question
         }
 
         function square() {
             var num = randomNum( 30, 10 );
             service.answer = Math.pow( num, 2 ).toString();
-            return {
-                question: num + ' ^  2'
-            };
+            service.question = num + ' ^  2'
         }
 
         function cube() {
             var num = randomNum( 20, 3 );
             service.answer = Math.pow( num, 3 ).toString();
-            return {
-                question: num + ' ^ 3'
-            };
+            service.question = num + ' ^ 3'
         }
 
         function division() {
@@ -131,9 +119,7 @@ angular.module("UILPractice")
             var otherNum = randomNum( 30, 5 );
             var temp = num * otherNum;
             service.answer = num.toString();
-            return {
-                question: temp + '/' + otherNum
-            };
+            service.question = temp + '/' + otherNum
         }
 
         function remainder() {
@@ -141,9 +127,7 @@ angular.module("UILPractice")
             var otherNum = randomNum( 15, 3 )
             var answer = num % otherNum;
             service.answer = answer.toString();
-            return {
-                question: num + '/' + otherNum
-            };
+            service.question = num + '/' + otherNum
         }
 
         function addition() {
@@ -151,19 +135,15 @@ angular.module("UILPractice")
             var otherNum = randomNum( 5000, 100 );
             var answer = num + otherNum;
             service.answer = answer.toString();
-            return {
-                question: num + ' + ' + otherNum
-            };
-        }
+            service.question = num + ' + ' + otherNum
+            }
 
         function decimalAdd() {
             var num = decimalNum();
             var otherNum = decimalNum();
             var answer = num + otherNum
             service.answer = answer.toFixed( 2 );
-            return {
-                question: num.toFixed( 2 ) + ' + ' + otherNum.toFixed( 2 )
-            };
+            service.question = num.toFixed( 2 ) + ' + ' + otherNum.toFixed( 2 )
         }
 
         function subtraction() {
@@ -171,9 +151,7 @@ angular.module("UILPractice")
             var otherNum = randomNum( 10000, 100 );
             var answer = num - otherNum;
             service.answer = answer.toString();
-            return {
-                question: num + ' - ' + otherNum
-            };
+            service.question = num + ' - ' + otherNum
         }
 
         function decimalSub() {
@@ -181,9 +159,7 @@ angular.module("UILPractice")
             var otherNum = decimalNum();
             var answer = num - otherNum;
             service.answer = answer.toFixed( 2 );
-            return {
-                question: num.toFixed( 2 ) + ' - ' + otherNum.toFixed( 2 )
-            };
+            service.question = num.toFixed( 2 ) + ' - ' + otherNum.toFixed( 2 )
         }
 
         function sequence() {
@@ -198,9 +174,7 @@ angular.module("UILPractice")
                 answer = answer + temp
             }
             service.answer = answer.toString();
-            return {
-                question: seq[ 0 ] + ', ' + seq[ 1 ] + '... ' + seq[ num - 1 ]
-            };
+            service.question = seq[ 0 ] + ', ' + seq[ 1 ] + '... ' + seq[ num - 1 ]
         }
 
         function decimalNum() {
