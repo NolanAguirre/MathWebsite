@@ -12,14 +12,11 @@
         </div>
         <div ng-controller="NavBarController as vm" class="nav-bar">
             <div class="main-type" ng-repeat="type in vm.service.problems">
-                <a ng-href="#/"
-                   ng-click="vm.service.currentProblem = type.mainType; vm.service.currentProblem.generate();">
+                <a ng-href="#/" ng-click="vm.service.currentProblem = type.mainType; vm.service.currentProblem.generate();">
                         {{type.mainType.name}}
                 </a>
                 <div class="hidden-type">
-                    <a ng-href="#/"
-                       ng-repeat="subType in type.subTypes"
-                       ng-click="vm.service.currentProblem = subType; vm.service.currentProblem.generate();">
+                    <a ng-href="#/" ng-repeat="subType in type.subTypes" ng-click="vm.service.currentProblem = subType; vm.service.currentProblem.generate();">
                             {{subType.name}}<br>
                     </a>
                 </div>
@@ -27,9 +24,6 @@
         </div>
         <div class="main-body" ng-view></div>
         <div class="footer">
-            <div>
-
-            </div>
             <div ng-controller="HelpController as vm">
                 <div>
                     <input type="text" placeholder="Answer here!"></input>

@@ -4,14 +4,15 @@ a{
 }
 
 .nav-bar{
-    float:left;
-    height:700px;
-    max-width: 150px;
+    background-color: blue;
+    height:50px;
 }
-
 .main-type{
-    height: 150px;
+    height: 50px;
+    display:inline-block;
     font-size: 1.2em;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 .main-type:hover .hidden-type{
     height: 100%;
@@ -25,15 +26,19 @@ a{
         transition-timing-function: linear;
     }
 .main-body{
-    height: 600px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
     width: 600px;
-    float:left;
+    margin: 0 auto;
+    padding-bottom: 200px;
     background-color: red;
 }
     .question-display{
-        max-width: 500px;
+        width: 500px;
         border-radius: 75px;
-        margin: auto;
+        margin: 0 auto;
         height:100px;
         background-color: #07b3f2;
         text-align:center;
