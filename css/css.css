@@ -20,7 +20,6 @@ a{
     .hidden-type{
         height: 0px;
         overflow: hidden;
-        text-align: right;
         transition-property: height;
         transition-duration: .5s;
         transition-timing-function: linear;
