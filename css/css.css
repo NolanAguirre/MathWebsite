@@ -154,7 +154,7 @@ input {
     }
     nav ul ul li a {
         padding: 1px 10px;
-        font-size:.75em
+        font-size:.75em;
     }
     .main-body{
         width:350px;
@@ -190,11 +190,11 @@ input {
     }
     nav ul li a {
         padding: 15px 5px;
-        font-size: .7em
+        font-size: .7em;
     }
     nav ul ul li a {
         padding: 1px 10px;
-        font-size:.75em
+        font-size:.75em;
     }
     .main-body{
         width:300px;
