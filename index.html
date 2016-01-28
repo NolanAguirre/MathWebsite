@@ -1,102 +1,51 @@
-<!doctype hmtl>
-<html lang="en" ng-app="mathApp">
 
-<head>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/css.css">
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title> Math Practice</title>
-</head>
+<html ng-app="UILPractice">
+    <head>
+        <link rel="stylesheet" href="css/css.css">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title> Math Practice</title>
+    </head>
 
-<body class = "fluid-container" ng-controller="math as vm">
-    <div>
-        <div class="rmm row">
-            <div class="col-sm-12 header">
-                <h1 class="headerText">Welcome to the Number Sense practice website</h1>
+    <body>
+        <div>
+            <h1 style="text-align:center">
+              Welcome to the number sense practice website
+            </h1>
+        </div>
+        <div class="nav-bar">
+          <nav ng-controller="NavBarController as vm">
+            	<ul>
+            		<li ng-repeat="type in vm.service.problems">
+                  <a ng-click="vm.service.currentProblem = type.mainType; vm.service.currentProblem.generate();" ng-href="#/">
+                    {{type.mainType.name}}</a>
+                  <ul>
+                    <li ng-repeat="subType in type.subTypes" ng-click="vm.service.currentProblem = subType; vm.service.currentProblem.generate();">
+                      <a ng-href="#/">{{subType.name}}</a>
+                    </li>
+                  </ul>
+                </li>
+            </nav>
+        </div>
+        <div class="main-body" ng-view></div>
+        <div class="footer">
+            <div ng-controller="HelpController as vm">
+                <input type="text" placeholder="Answer here!"></input>
+                <div>
+                <a class="psudo-button" ng-click="vm.submitAnswer()">Solve!</a>
+                <a class="psudo-button" ng-click="vm.service.currentProblem.generate()">New!</a>
+                <a class="psudo-button" ng-href="{{vm.service.currentProblem.link}}">Help!</a>
+            </div>
             </div>
         </div>
-
-        <div class="rmm row">
-            <div class="problemTypePanel col-sm-1 rmp">
-                <div ng-repeat="problemType in vm.problemTypes">
-
-                    <div class="categories col-sm-12" ng-click="vm.currentProblem = problemType.mainType.generate(); vm.storeProblem = problemType.mainType;
-                    vm.disableButtons = false">
-                        {{ problemType.mainType.name }}
-                    </div>
-                    <div class="subCategories">
-                        <div ng-repeat="subType in problemType.subTypes">
-                            <div class=" subCategory col-sm-12" ng-click="vm.currentProblem = subType.generate(); vm.storeProblem = subType;
-                            vm.disableButtons = false">
-                                {{ subType.name }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class=" mainbody col-sm-11 rmp">
-                <div ng-show="vm.showHelp" class=" rmp helpDisplay">
-                       
-                            <div class=" strExample col-sm-2">
-                                <pre>{{vm.storeProblem.strategyExample}}</pre>
-                            </div>                       <div class="col-sm-10 rmp helpHeader">
-                            <div class=" rmp col-sm-10">
-                                <h3 style="text-align:center">Known strategies are listed below</h3> 
-                             </div>
-                            <div ng-click="vm.showHelp = false"class="rmp exitPicture col-sm-2">
-                                <h5>exit to problem</h5>
-                            </div>
-                            </div>
-                                          <div class="strategyDisplay col-sm-10 rmp">
-                            <pre>{{vm.storeProblem.strategy}}</pre>
-                            </div>       
-                        
-                        
-                       </div>
-                            
-                            
-                      
-                        
-               
-                <div ng-hide="vm.showHelp"class="col-sm-12 numberDisplay">
-                    <h1 class="problemDisplay">{{vm.currentProblem.questions}}</h1>
-                </div>
-              
-
-              <div class="col-sm-12 submitAndCheck ">
-                    <div class="answerDisplay col-md-4">
-                        <div>
-                            <h3>{{vm.displayAnswer}}</h3>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4">
-                        <input type="text" ng-model="vm.userAnswer" />
-                        <input type="checkbox" ng-model="vm.reverseInput">Check the box to answer in reverse order.</input>
-                        
-                    </div>
-
-                    <div class="col-sm-4">
-                        <div class="col-sm-12">
-                            <button class="btn btn-info btn-lg submit" ng-click="vm.submitAnswer()">Submit Answer</button>
-                            <button class="btn btn-info btn-lg newProb" ng-disabled="vm.disableButtons" ng-click=" vm.newProblemClick()">New Problem</button>
-                        </div>
-                        <div class="col-sm-12 help">
-                            <button class="helpButton btn btn-info btn-lg" ng-disabled="vm.disableButtons" ng-click="vm.showHelp = true">Need help?</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-   
-    <script src="javascript/angular.min.js"></script>
-    <script src="javascript/math.js"></script>
-    <script src="javascript/formatedStrategies.js"/>
-    <script src="javascript/jquery-2.1.3.min.js"></script>
-    
-</body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular-route.min.js"></script>
+        <script src="javascript/main.js"></script>
+        <script src="javascript/router.js"></script>
+        <script src="javascript/Controllers/navBar.js"></script>
+        <script src="javascript/Controllers/display.js"></script>
+        <script src="javascript/Controllers/help.js"></script>
+        <script src="javascript/Services/service.js"></script>
+    </body>
 
 </html>
