@@ -8,31 +8,33 @@
 
     <body>
         <div>
-            <h1 style="text-align:center">Welcome to the number sense practice website</h1>
+            <h1 style="text-align:center">
+              Welcome to the number sense practice website
+            </h1>
         </div>
-        <div ng-controller="NavBarController as vm" class="nav-bar">
-            <div class="main-type" ng-repeat="type in vm.service.problems">
-                <a ng-href="#/" ng-click="vm.service.currentProblem = type.mainType; vm.service.currentProblem.generate();">
-                        {{type.mainType.name}}
-                </a>
-                <div class="hidden-type">
-                    <a ng-href="#/" ng-repeat="subType in type.subTypes" ng-click="vm.service.currentProblem = subType; vm.service.currentProblem.generate();">
-                            {{subType.name}}<br>
-                    </a>
-                </div>
-            </div>
+        <div class="nav-bar">
+          <nav ng-controller="NavBarController as vm">
+            	<ul>
+            		<li ng-repeat="type in vm.service.problems">
+                  <a ng-click="vm.service.currentProblem = type.mainType; vm.service.currentProblem.generate();" ng-href="#/">
+                    {{type.mainType.name}}</a>
+                  <ul>
+                    <li ng-repeat="subType in type.subTypes" ng-click="vm.service.currentProblem = subType; vm.service.currentProblem.generate();">
+                      <a ng-href="#/">{{subType.name}}</a>
+                    </li>
+                  </ul>
+                </li>
+            </nav>
         </div>
         <div class="main-body" ng-view></div>
         <div class="footer">
             <div ng-controller="HelpController as vm">
+                <input type="text" placeholder="Answer here!"></input>
                 <div>
-                    <input type="text" placeholder="Answer here!"></input>
-                </div>
-                <div>
-                    <button class="psudo-button" ng-click="vm.submitAnswer()">Solve!</button>
-                    <a class="psudo-button" ng-click="vm.service.currentProblem.generate()">New Problem!</a>
-                    <a class="psudo-button" ng-href="{{vm.service.currentProblem.link}}">click me for help</a>
-                </div>
+                <a class="psudo-button" ng-click="vm.submitAnswer()">Solve!</a>
+                <a class="psudo-button" ng-click="vm.service.currentProblem.generate()">New!</a>
+                <a class="psudo-button" ng-href="{{vm.service.currentProblem.link}}">Help!</a>
+            </div>
             </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.min.js"></script>
