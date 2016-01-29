@@ -1,3 +1,4 @@
-<div clas="problem-display" ng-controller="DisplayController as vm">
-    <div ng class="question-display">{{vm.service.question}}</div>
+<div ng-controller="DisplayController as vm">
+    <div class="question-display">{{vm.service.question}}</div>
+    <div ng-hide="vm.service.display" class="answer-display">{{vm.service.answer}}</div>
 </div>

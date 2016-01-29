@@ -68,23 +68,31 @@ nav ul ul li a:hover {
 }
 .main-body{
     display:flex;
-    align-items: center;
+    height: 400px;
     justify-content: center;
-    height: 300px;
     width: 600px;
     margin: 0 auto;
-    padding-bottom: 100px;
 }
     .question-display{
-        width:600px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 100px;
+        width: 600px;
         border-radius: 75px;
         height:100px;
         background-color: #07b3f2;
-        text-align:center;
         font-size: 4em;
+    }
+    .answer-display{
+        background-color: yellow;
+        height:150px;
+        text-align: center;
     }
 .footer{
   width:500px;
+  display:flex;
+  justify-content: center;
   margin: 50px auto;
 }
 input {
@@ -133,6 +141,9 @@ input {
     nav ul ul li a {
         padding: 5px 25px;
     }
+    .question-display{
+        width:500px;
+    }
 }
 @media screen and (max-width: 620px) {
     .question-display{
@@ -161,6 +172,7 @@ input {
         padding-bottom: 0px;
     }
     .question-display{
+        margin-top: 50px;
         width:300px;
         height:80px;
         font-size:1.5em;
@@ -197,13 +209,14 @@ input {
     }
     .main-body{
         width:300px;
-        height:250px;
+        height:300px;
         padding-bottom: 50px;
     }
     .question-display{
+        margin-top: 50px;
         width:200px;
         height:80px;
-        font-size:1.5em;
+        font-size:1.2em;
     }
     .footer{
       width:250px;

@@ -17,10 +17,16 @@
           <nav ng-controller="NavBarController as vm">
             	<ul>
             		<li ng-repeat="type in vm.service.problems">
-                  <a ng-click="vm.service.currentProblem = type.mainType; vm.service.currentProblem.generate();" ng-href="#/">
+                  <a ng-click=
+                  "vm.service.currentProblem = type.mainType;
+                   vm.service.currentProblem.generate();
+                   vm.service.display = true" ng-href="#/">
                     {{type.mainType.name}}</a>
                   <ul>
-                    <li ng-repeat="subType in type.subTypes" ng-click="vm.service.currentProblem = subType; vm.service.currentProblem.generate();">
+                    <li ng-repeat="subType in type.subTypes" ng-click="
+                        vm.service.currentProblem = subType;
+                        vm.service.currentProblem.generate();
+                        vm.service.display = true">
                       <a ng-href="#/">{{subType.name}}</a>
                     </li>
                   </ul>
@@ -30,10 +36,10 @@
         <div class="main-body" ng-view></div>
         <div class="footer">
             <div ng-controller="HelpController as vm">
-                <input type="text" placeholder="Answer here!"></input>
+                <input ng-keypress="vm.service.submitAnswer(); vm.service.display = false" type="text" placeholder="Answer here!" ng-model="vm.service.userAnswer"></input>
                 <div>
-                <a class="psudo-button" ng-click="vm.submitAnswer()">Solve!</a>
-                <a class="psudo-button" ng-click="vm.service.currentProblem.generate()">New!</a>
+                <a class="psudo-button" ng-click="vm.service.submitAnswer(); vm.service.display = false">Solve!</a>
+                <a class="psudo-button" ng-click="vm.service.currentProblem.generate(); vm.service.display = true">New!</a>
                 <a class="psudo-button" ng-href="{{vm.service.currentProblem.link}}">Help!</a>
             </div>
             </div>
