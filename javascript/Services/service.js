@@ -24,7 +24,7 @@ angular.module("UILPractice")                   // Questions are displayed to th
             },{
                 name: 'Sequentials',
                 generate: sequence,
-                link:"#/addition/sequentials"
+                link:"#/no_help"
             } ]
         }, {
             mainType: {
