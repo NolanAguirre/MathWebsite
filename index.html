@@ -1,57 +1,56 @@
-
 <html ng-app="UILPractice">
-    <head>
-        <link rel="stylesheet" href="css/css.css">
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <title> Math Practice</title>
-    </head>
 
-    <body>
-        <div>
-            <h1 style="text-align:center">
+<head>
+    <link rel="stylesheet" href="css/css.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title> Math Practice</title>
+</head>
+
+<body>
+    <div>
+        <h1 style="text-align:center">
               Welcome to the number sense practice website
             </h1>
-        </div>
-        <div class="nav-bar">
-          <nav ng-controller="NavBarController as vm">
-            	<ul>
-            		<li ng-repeat="type in vm.service.problems">
-                  <a ng-click=
-                  "vm.service.currentProblem = type.mainType;
+    </div>
+    <div class="nav-bar">
+        <nav ng-controller="NavBarController as vm">
+            <ul>
+                <li ng-repeat="type in vm.service.problems">
+                    <a ng-click="vm.service.currentProblem = type.mainType;
                    vm.service.currentProblem.generate();
                    vm.service.display = true" ng-href="#/">
                     {{type.mainType.name}}</a>
-                  <ul>
-                    <li ng-repeat="subType in type.subTypes" ng-click="
+                    <ul>
+                        <li ng-repeat="subType in type.subTypes" ng-click="
                         vm.service.currentProblem = subType;
                         vm.service.currentProblem.generate();
                         vm.service.display = true">
-                      <a ng-href="#/">{{subType.name}}</a>
-                    </li>
-                  </ul>
+                            <a ng-href="#/">{{subType.name}}</a>
+                        </li>
+                    </ul>
                 </li>
-            </nav>
-        </div>
-        <div class="main-body" ng-view></div>
-        <div class="footer">
-            <div ng-controller="HelpController as vm">
-                <input ng-keypress="vm.service.submitAnswer(); vm.service.display = false" type="text" placeholder="Answer here!" ng-model="vm.service.userAnswer"></input>
-                <div>
+        </nav>
+    </div>
+    <div class="main-body" ng-view></div>
+    <div class="footer">
+        <div ng-controller="HelpController as vm">
+            <input ng-keypress="vm.service.submitAnswer(); vm.service.display = false" type="text" placeholder="Answer here!" ng-model="vm.service.userAnswer"></input>
+            <div>
                 <a class="psudo-button" ng-click="vm.service.submitAnswer(); vm.service.display = false">Solve!</a>
                 <a class="psudo-button" ng-click="vm.service.currentProblem.generate(); vm.service.display = true">New!</a>
                 <a class="psudo-button" ng-href="{{vm.service.currentProblem.link}}">Help!</a>
             </div>
-            </div>
         </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular-route.min.js"></script>
-        <script src="javascript/main.js"></script>
-        <script src="javascript/router.js"></script>
-        <script src="javascript/Controllers/navBar.js"></script>
-        <script src="javascript/Controllers/display.js"></script>
-        <script src="javascript/Controllers/help.js"></script>
-        <script src="javascript/Services/service.js"></script>
-    </body>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular-route.min.js"></script>
+    <script src="javascript/main.js"></script>
+    <script src="javascript/router.js"></script>
+    <script src="javascript/Controllers/navBar.js"></script>
+    <script src="javascript/Controllers/display.js"></script>
+    <script src="javascript/Controllers/help.js"></script>
+    <script src="javascript/Services/service.js"></script>
+</body>
 
 </html>

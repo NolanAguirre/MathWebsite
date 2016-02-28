@@ -11,7 +11,7 @@ function Router( $routeProvider ) {
         } )
         .when('/no_help', {templateUrl: 'templates/none.html'})
         .when('/addition/sequentials', {templateUrl: 'templates/addition/sequentials.html'})
-        .when('/no_help', {templateUrl: 'templates/none.htm'})
+        .when('/multiplication/five', {templateUrl: 'templates/multiplication/ends_in_five.html'})
         .when('/no_help', {templateUrl: 'templates/none.html'})
         .when('/no_help', {templateUrl: 'templates/none.html'})
         .when('/no_help', {templateUrl: 'templates/none.html'})
