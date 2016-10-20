@@ -36,7 +36,7 @@
         <div class="main-body" ng-view></div>
         <div class="footer">
             <div ng-controller="HelpController as vm">
-                <input ng-keypress="vm.service.submitAnswer(); vm.service.display = false" type="text" placeholder="Answer here!" ng-model="vm.service.userAnswer"></input>
+                <input ng-keypress="vm.service.display = false" type="text" placeholder="Answer here!" ng-model="vm.service.userAnswer"></input>
                 <div>
                 <a class="psudo-button" ng-click="vm.service.submitAnswer(); vm.service.display = false">Solve!</a>
                 <a class="psudo-button" ng-click="vm.service.currentProblem.generate(); vm.service.display = true">New!</a>
